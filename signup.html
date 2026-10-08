@@ -184,7 +184,7 @@ const PLANS=[
  {id:'business',nm:'Business',m:549,users:'9–18',ds:{en:'9–18 users, several warehouses',de:'9–18 Nutzer, mehrere Lager',es:'9–18 usuarios, varios almacenes',pl:'9–18 użytkowników, kilka magazynów'}},
  {id:'ent',nm:'Enterprise',m:0,users:'19+',ds:{en:'19+ users, SSO, onboarding',de:'19+ Nutzer, SSO, Onboarding',es:'19+ usuarios, SSO, onboarding',pl:'19+ użytkowników, SSO, wdrożenie'}}];
 const T={
- en:{have:'Already have an account?',login:'Live demo →',h1:'Get early access.<br><em>Be first on Rigvo.</em>',lead:'We’re onboarding the first rental companies now. Leave your details — we’ll set up your workspace, import your stock for free and show you around.',s_company:'Your company',co:'Company name',ctry:'Country',city:'City',vat:'VAT ID',opt:'(optional)',vathint:'EU business with VAT ID — invoice without VAT (reverse charge)',ph:'Phone',s_access:'Your access',nm:'Your name',em:'Work email',pw:'Password (min. 8 characters)',show:'Show',hide:'Hide',req:'Required',emhint:'Enter a valid email',pwhint:'At least 8 characters',note:'<b>💳 Nothing to pay now.</b> Early-access companies get personal onboarding and free data import. When we open, every plan starts with a 14-day free trial — no card needed.',agree:'I agree that Rigvo may contact me about early access. <a href="privacy.html">Privacy Policy</a>.',small:'We reply within one business day · hello@rigvo.app',s_plan:'Your plan',monthly:'Monthly',yearly:'Yearly',popular:'Most popular',mo:'/month',custom:'Custom',byear:'billed yearly',s_inc:'Every plan includes',t1:'Servers in the EU',t2:'GDPR · DPA included',
+ en:{have:'Already have an account?',login:'Live demo →',h1:'Get early access.<br><em>Be first on Rigvo.</em>',lead:'We’re onboarding the first rental companies now. Leave your details — we’ll set up your workspace, import your stock for free and show you around.',s_company:'Your company',co:'Company name',ctry:'Country',city:'City',vat:'VAT ID',opt:'(optional)',vathint:'EU business with VAT ID — invoice without VAT (reverse charge)',ph:'Phone',s_access:'Your access',nm:'Your name',em:'Work email',pw:'Password (min. 8 characters)',show:'Show',hide:'Hide',req:'Required',emhint:'Enter a valid email',pwhint:'At least 8 characters',note:'<b>💳 Nothing to pay now.</b> Early-access companies get personal onboarding and free data import. When we open, every plan starts with a 14-day free trial — no card needed.',agree:'I agree that Rigvo may contact me about early access, and accept the <a href="terms.html">Terms</a> and <a href="privacy.html">Privacy Policy</a>.',small:'We reply within one business day · hello@rigvo.app',s_plan:'Your plan',monthly:'Monthly',yearly:'Yearly',popular:'Most popular',mo:'/month',custom:'Custom',byear:'billed yearly',s_inc:'Every plan includes',t1:'Servers in the EU',t2:'GDPR · DPA included',
   sum_plan:'Plan',sum_bill:'Billing',sum_users:'Users',sum_after:'Price when we open',sum_vat:'VAT',sum_trial:'Free trial',vat_rc:'reverse charge (0%)',vat_add:'added per country',year_total:'per year',
   cta:p=>'Request early access →',cta_ent:'Talk to sales →',ent_note:'We’ll call you within one business day and build a plan for your team.',
   inc:['Quotes with online approval and tracking','Warehouse, availability and QR picking','Crew schedule, payroll and ratings','Profit of every event, LTV and full statistics','Accounting: Lexware Office, Xero, Holded, Fakturownia, DATEV','Mobile app for crew and warehouse','Free data import from your spreadsheets'],
@@ -255,12 +255,13 @@ function validate(quiet){let bad=false;
 $('#agree').addEventListener('change',()=>$('#chkw').classList.remove('bad'));
 $('#form').addEventListener('submit',async e=>{e.preventDefault();if(!validate())return;const b=$('#cta'),l=L(),p=PLANS.find(x=>x.id===st.plan);b.disabled=true;b.textContent='…';
  const data={company:$('#co').value.trim(),country:$('#ctry').value,city:$('#city').value.trim(),vat_id:$('#vat').value.trim(),phone:$('#ph').value.trim(),name:$('#nm').value.trim(),email:$('#em').value.trim(),plan:p.nm,billing:st.bill==='y'?'yearly':'monthly',language:st.lang};
- try{const r=await sendLead('Early access',data);
+ try{const r=await sendLead('early_access',Object.assign(data,{consent_text:'Early access form: agreed to be contacted'}));
   if(r==='sent'){document.body.classList.add('isdone');$('#d_p').textContent=l.d_p(data.company);$('.done .steps').style.display='none';scrollTo(0,0)}
  }catch(x){alert('Could not send — please email hello@rigvo.app')}
  b.disabled=false;renderPlans()});
 renderLang();syncCountry();
 </script>
+<script src="consent.js"></script>
 <script src="lead.js"></script>
 </body>
 </html>

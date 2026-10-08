@@ -1,4 +1,5 @@
 User-agent: *
 Disallow: /demo
 Disallow: /login
+Disallow: /admin
 Allow: /

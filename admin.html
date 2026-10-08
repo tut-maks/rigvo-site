@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Rigvo · Sales CRM</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="brand.css">
+<style>
+:root{--bg:#F6F6F3;--card:#FFFFFF;--tx:#111110;--mut:#5A5A54;--mut2:#85857E;--line:#E4E4DF;--a:#FFD400;--abg:#FFF6CC;--dark:#111110;
+--s-new:#244BA6;--s-contacted:#7A4FD0;--s-demo:#B26B00;--s-trial:#0F7B8A;--s-won:#138A4C;--s-lost:#8A8A84;--s-spam:#C7372A}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0E0E0E;--card:#171716;--tx:#F5F5F2;--mut:#B5B5AE;--mut2:#85857E;--line:#2C2C29;--abg:#2A2510}}
+:root[data-theme="dark"]{--bg:#0E0E0E;--card:#171716;--tx:#F5F5F2;--mut:#B5B5AE;--mut2:#85857E;--line:#2C2C29;--abg:#2A2510}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--tx);font-family:Geist,system-ui,sans-serif;font-size:15px;line-height:1.45}
+button,input,select,textarea{font:inherit;color:inherit}
+.top{position:sticky;top:0;z-index:20;background:var(--dark);color:#fff;display:flex;align-items:center;gap:14px;padding:0 20px;height:58px}
+.top .t{font-weight:600;color:#C9C9C4;font-size:14px;padding-left:12px;border-left:1px solid #2C2C29}
+.top nav{display:flex;gap:2px;margin-left:18px;height:100%}
+.top nav button{background:none;border:0;color:#C9C9C4;padding:0 14px;height:100%;cursor:pointer;border-bottom:3px solid transparent;font-weight:600}
+.top nav button.on{color:#fff;border-bottom-color:var(--a)}
+.sp{flex:1}
+.ib{background:none;border:1px solid #3A3A36;color:#fff;border-radius:9px;padding:8px 12px;cursor:pointer;min-height:38px;font-size:14px}
+.ib:hover{background:#1E1E1C}
+main{padding:18px 20px 60px;max-width:1500px;margin:0 auto}
+.bar{position:sticky;top:58px;z-index:10;background:var(--bg);display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:8px 0 12px}
+.in,.sel{background:var(--card);border:1px solid var(--line);border-radius:9px;padding:8px 10px;min-height:38px;outline:none}
+.in:focus,.sel:focus{border-color:var(--tx)}
+.in.q{min-width:220px}
+.seg{display:inline-flex;background:var(--card);border:1px solid var(--line);border-radius:9px;padding:3px}
+.seg button{background:none;border:0;border-radius:7px;padding:5px 10px;cursor:pointer;color:var(--mut);font-weight:600;font-size:13.5px}
+.seg button.on{background:var(--dark);color:#fff}
+.btn{background:var(--card);border:1px solid var(--line);border-radius:9px;padding:8px 12px;cursor:pointer;min-height:38px;font-weight:600}
+.btn.pri{background:var(--a);border-color:var(--a);color:#0E0E0E}
+.btn:hover{border-color:var(--mut2)}
+.muted{color:var(--mut)}.small{font-size:13px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-bottom:12px}
+.kpi{padding:14px 16px}.kpi .k{font-size:13px;color:var(--mut)}.kpi .v{font-size:28px;font-weight:700;letter-spacing:-.02em}.kpi .d{font-size:12.5px;font-weight:600}
+.up{color:#138A4C}.dn{color:#C7372A}
+/* table */
+.tw{overflow:auto;max-height:calc(100vh - 210px)}
+table{width:100%;border-collapse:separate;border-spacing:0}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);white-space:nowrap;vertical-align:middle}
+th{position:sticky;top:0;background:var(--card);z-index:1;font-size:12.5px;color:var(--mut);font-weight:600;cursor:pointer;user-select:none}
+th[data-nosort]{cursor:default}
+th .ar{opacity:.5;font-size:11px}
+tbody tr{cursor:pointer;transition:background .12s}
+tbody tr:hover{background:var(--abg)}
+tbody tr.sel{background:var(--abg)}
+td.nm b{display:block}td.nm span{color:var(--mut);font-size:13px}
+.cb{width:18px;height:18px;accent-color:var(--tx)}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;border-radius:999px;padding:3px 10px;background:color-mix(in srgb,var(--c) 14%,transparent);color:var(--c)}
+.pill i{width:7px;height:7px;border-radius:50%;background:var(--c)}
+.kind{font-size:12.5px;font-weight:600;border:1px solid var(--line);border-radius:7px;padding:2px 8px;color:var(--mut)}
+.bulk{display:flex;gap:8px;align-items:center;background:var(--dark);color:#fff;border-radius:12px;padding:8px 12px;margin-bottom:10px;overflow:hidden;animation:rvUp .2s ease}
+.bulk .sel{background:#1E1E1C;border-color:#3A3A36;color:#fff}
+/* pipeline */
+.pipe{display:grid;grid-template-columns:repeat(6,minmax(220px,1fr));gap:10px;overflow-x:auto;padding-bottom:10px}
+.col{background:color-mix(in srgb,var(--line) 45%,transparent);border-radius:14px;padding:10px;min-height:300px;transition:background .15s,outline-color .15s;outline:2px dashed transparent}
+.col.over{outline-color:var(--a);background:var(--abg)}
+.col h3{margin:2px 4px 10px;font-size:14px;display:flex;align-items:center;gap:8px}
+.col h3 small{color:var(--mut);font-weight:500;margin-left:auto}
+.lc{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:10px 12px;margin-bottom:8px;cursor:grab;transition:transform .15s,box-shadow .15s}
+.lc:hover{box-shadow:0 6px 18px rgba(0,0,0,.08)}
+.lc.drag{opacity:.45}
+.lc b{display:block}.lc .m{font-size:12.5px;color:var(--mut)}
+.lc .r{display:flex;justify-content:space-between;align-items:center;margin-top:6px;gap:6px}
+/* stats */
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:12px}
+.panel{padding:16px}
+.panel h3{margin:0 0 12px;font-size:15px}
+.chart{display:flex;align-items:flex-end;gap:3px;height:170px;padding-top:8px;border-bottom:1px solid var(--line)}
+.chart .c{flex:1;display:flex;align-items:flex-end;justify-content:center;gap:1px;height:100%;position:relative;min-width:4px}
+.chart .c i{display:block;width:45%;border-radius:3px 3px 0 0;background:var(--a);transition:height .3s cubic-bezier(.2,.8,.2,1)}
+.chart .c i.p{background:color-mix(in srgb,var(--mut2) 45%,transparent)}
+.xl{display:flex;justify-content:space-between;font-size:11.5px;color:var(--mut2);margin-top:4px}
+.hb{display:grid;grid-template-columns:minmax(90px,170px) 1fr 70px;gap:10px;align-items:center;padding:5px 0;font-size:14px}
+.hb .t{height:10px;border-radius:6px;background:color-mix(in srgb,var(--line) 70%,transparent);overflow:hidden}
+.hb .t i{display:block;height:100%;border-radius:6px;background:var(--a);transition:width .3s}
+.hb .n{text-align:right;font-weight:600}.hb .n small{color:var(--mut);font-weight:500}
+.leg{display:flex;gap:14px;font-size:12.5px;color:var(--mut);margin-bottom:6px}.leg span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px;background:var(--a)}.leg span.p::before{background:color-mix(in srgb,var(--mut2) 45%,transparent)}
+/* drawer */
+.scrim{position:fixed;inset:0;background:rgba(0,0,0,.28);z-index:40;animation:rvFade .18s ease}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(460px,100%);background:var(--card);z-index:41;box-shadow:-20px 0 50px rgba(0,0,0,.18);display:flex;flex-direction:column;animation:rvSlide .24s cubic-bezier(.2,.8,.2,1)}
+.drawer.out{animation:rvSlideOut .18s ease-in forwards}.scrim.out{animation:rvFadeOut .18s ease-in forwards}
+.dh{padding:18px 20px;border-bottom:1px solid var(--line);display:flex;gap:10px;align-items:flex-start}
+.dh h2{margin:0;font-size:22px;letter-spacing:-.02em}
+.db{padding:16px 20px;overflow:auto;flex:1;display:flex;flex-direction:column;gap:14px}
+.kv{display:grid;grid-template-columns:120px 1fr;gap:6px 12px;font-size:14px}.kv dt{color:var(--mut)}.kv dd{margin:0;word-break:break-word}
+textarea{width:100%;min-height:110px;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px;outline:none;resize:vertical}
+.df{padding:14px 20px;border-top:1px solid var(--line);display:flex;gap:8px;flex-wrap:wrap}
+.x{background:none;border:0;font-size:26px;line-height:1;cursor:pointer;color:var(--mut);margin-left:auto;width:40px;height:40px;border-radius:9px}
+.x:hover{background:var(--bg)}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--dark);color:#fff;padding:10px 16px;border-radius:10px;z-index:60;border-left:4px solid var(--a);animation:rvUp .2s ease}
+.empty{padding:48px 20px;text-align:center;color:var(--mut)}
+/* login */
+.login{min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--dark);padding:16px}
+.login form{background:#171716;color:#fff;border:1px solid #2C2C29;border-radius:18px;padding:32px;width:100%;max-width:380px;display:flex;flex-direction:column;gap:14px;animation:rvUp .26s cubic-bezier(.2,.8,.2,1)}
+.login input{background:#1E1E1C;border:1px solid #2C2C29;border-radius:10px;padding:13px;color:#fff;font-size:16px;outline:none}
+.login input:focus{border-color:var(--a)}
+.login .err{color:#FF6B5B;font-size:14px;margin:0}
+.note{background:var(--abg);border:1px solid color-mix(in srgb,var(--a) 50%,transparent);border-radius:12px;padding:14px 16px;font-size:14px}
+@keyframes rvUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes rvFade{from{opacity:0}to{opacity:1}}@keyframes rvFadeOut{to{opacity:0}}
+@keyframes rvSlide{from{transform:translateX(30px);opacity:0}to{transform:none;opacity:1}}
+@keyframes rvSlideOut{to{transform:translateX(30px);opacity:0}}
+.view{animation:rvFade .16s ease}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+@media (max-width:760px){.top{padding:0 12px;gap:8px}.top .t{display:none}.top nav{margin-left:4px}.top nav button{padding:0 9px}main{padding:12px}.in.q{min-width:0;flex:1}.ib.hm{display:none}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+'use strict';
+const STAGES=[['new','New'],['contacted','Contacted'],['demo','Demo held'],['trial','Trial'],['won','Won'],['lost','Lost']];
+const ALLST=STAGES.concat([['spam','Spam']]);
+const KIND={demo:'Live demo',early_access:'Early access',demo_call:'Demo call'};
+const COUNTRY={DE:'Germany',AT:'Austria',CH:'Switzerland',ES:'Spain',PL:'Poland',NL:'Netherlands',FR:'France',IT:'Italy',IE:'Ireland',GB:'United Kingdom',BE:'Belgium',CZ:'Czechia',PT:'Portugal',SE:'Sweden',DK:'Denmark',XX:'Other'};
+const S={pass:null,rows:[],tab:'pipeline',q:'',kind:'',status:'',country:'',sort:['created_at',-1],sel:new Set(),open:null,
+ period:'30',from:'',to:'',cmp:'prev',err:'',loading:false,conf:true};
+try{S.pass=sessionStorage.getItem('rigvo_admin')}catch(e){}
+const $=s=>document.querySelector(s);
+const esc=v=>String(v==null?'':v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmtD=d=>new Date(d).toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'});
+const fmtDT=d=>new Date(d).toLocaleString('en-GB',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'});
+const stName=s=>(ALLST.find(x=>x[0]===s)||[s,s])[1];
+const pill=s=>`<span class="pill" style="--c:var(--s-${s})"><i></i>${stName(s)}</span>`;
+const src=r=>(r.utm&&r.utm.utm_source)||(r.referrer?(()=>{try{return new URL(r.referrer).hostname.replace(/^www\./,'')}catch(e){return 'other'}})():'direct');
+const country=r=>r.country||r.ip_country||'';
+function toast(t){const o=$('.toast');o&&o.remove();const el=document.createElement('div');el.className='toast';el.textContent=t;document.body.appendChild(el);setTimeout(()=>{el.animate([{opacity:1},{opacity:0}],{duration:200}).onfinish=()=>el.remove()},2200)}
+
+async function api(method,body){const r=await fetch('/api/admin-leads',{method,headers:{Authorization:'Bearer '+S.pass,'Content-Type':'application/json'},body:body?JSON.stringify(body):undefined});
+ if(r.status===401){logout('Wrong password');throw new Error('auth')}
+ if(r.status===503){S.conf=false;throw new Error('nc')}
+ if(!r.ok)throw new Error('http '+r.status);return r.json()}
+async function load(){S.loading=true;render();try{const d=await api('GET');S.rows=d.rows||[];S.conf=true}catch(e){if(e.message!=='auth'&&e.message!=='nc')toast('Could not load leads')}S.loading=false;render()}
+async function setStatus(ids,status){for(const id of ids){const r=S.rows.find(x=>x.id===id);if(!r||r.status===status)continue;const old=r.status;r.status=status;try{await api('PATCH',{id,status})}catch(e){r.status=old;toast('Not saved');break}}render();toast(ids.length>1?ids.length+' leads → '+stName(status):'→ '+stName(status))}
+function logout(msg){S.pass=null;try{sessionStorage.removeItem('rigvo_admin')}catch(e){}S.err=msg||'';render()}
+
+function filtered(){const q=S.q.trim().toLowerCase();return S.rows.filter(r=>(!S.kind||r.kind===S.kind)&&(!S.status||r.status===S.status)&&(!S.country||country(r)===S.country)&&(!q||[r.name,r.email,r.company,r.city,r.note].some(v=>v&&String(v).toLowerCase().includes(q))))}
+function sorted(rows){const[k,d]=S.sort;const val=r=>k==='country'?country(r):k==='source'?src(r):(r[k]||'');return rows.slice().sort((a,b)=>{const x=val(a),y=val(b);return (x>y?1:x<y?-1:0)*d})}
+
+function filterBar(withPeriod){const countries=[...new Set(S.rows.map(country).filter(Boolean))].sort();
+ return `<div class="bar"><input class="in q" placeholder="Search name, email, company, note" value="${esc(S.q)}" data-in="q" aria-label="Search">
+ <select class="sel" data-in="kind" aria-label="Source form"><option value="">All forms</option>${Object.entries(KIND).map(([k,v])=>`<option value="${k}" ${S.kind===k?'selected':''}>${v}</option>`).join('')}</select>
+ ${S.tab!=='pipeline'?`<select class="sel" data-in="status" aria-label="Stage"><option value="">All stages</option>${ALLST.map(([k,v])=>`<option value="${k}" ${S.status===k?'selected':''}>${v}</option>`).join('')}</select>`:''}
+ <select class="sel" data-in="country" aria-label="Country"><option value="">All countries</option>${countries.map(c=>`<option value="${c}" ${S.country===c?'selected':''}>${esc(COUNTRY[c]||c)}</option>`).join('')}</select>
+ ${withPeriod?periodCtl():''}<span class="sp"></span><span class="muted small">${filtered().length} of ${S.rows.length}</span></div>`}
+function periodCtl(){return `<span class="seg" role="group" aria-label="Period">${[['7','7d'],['30','30d'],['90','90d'],['m','Month'],['y','Year'],['all','All'],['c','Custom']].map(([k,v])=>`<button data-period="${k}" class="${S.period===k?'on':''}">${v}</button>`).join('')}</span>
+ ${S.period==='c'?`<input class="in" type="date" data-in="from" value="${S.from}" aria-label="From"><input class="in" type="date" data-in="to" value="${S.to}" aria-label="To">`:''}
+ <select class="sel" data-in="cmp" aria-label="Compare with"><option value="prev" ${S.cmp==='prev'?'selected':''}>vs previous period</option><option value="yoy" ${S.cmp==='yoy'?'selected':''}>vs year ago</option><option value="none" ${S.cmp==='none'?'selected':''}>no comparison</option></select>`}
+
+function vPipeline(){const rows=filtered().filter(r=>r.status!=='spam');
+ return filterBar(false)+`<div class="pipe">${STAGES.map(([k,v])=>{const items=rows.filter(r=>r.status===k);return `<section class="col" data-drop="${k}" aria-label="${v}"><h3>${pill(k)}<small>${items.length}</small></h3>
+ ${items.map(r=>`<article class="lc" draggable="true" data-drag="${r.id}" data-open="${r.id}"><b>${esc(r.company||r.name||r.email)}</b><span class="m">${esc(r.name&&r.company?r.name+' · ':'')}${esc(r.email)}</span>
+ <div class="r"><span class="kind">${KIND[r.kind]||r.kind}</span><span class="m">${fmtD(r.created_at)}</span></div></article>`).join('')||'<p class="muted small" style="margin:4px">Drop leads here</p>'}</section>`}).join('')}</div>`}
+
+function vTable(){const rows=sorted(filtered());const cols=[['created_at','Date'],['name','Name / company'],['email','Email'],['kind','Form'],['country','Country'],['plan','Plan'],['source','Source'],['status','Stage']];
+ const allSel=rows.length&&rows.every(r=>S.sel.has(r.id));
+ return filterBar(false)+(S.sel.size?`<div class="bulk" role="region" aria-label="Bulk actions"><b>${S.sel.size} selected</b><select class="sel" data-bulk aria-label="Move to stage"><option value="">Move to stage…</option>${ALLST.map(([k,v])=>`<option value="${k}">${v}</option>`).join('')}</select><button class="ib" data-a="csvsel">Export selected</button><button class="ib" data-a="clr">Clear (Esc)</button></div>`:'')+
+ `<div class="card tw"><table><thead><tr><th data-nosort><input type="checkbox" class="cb" data-a="all" ${allSel?'checked':''} aria-label="Select all"></th>${cols.map(([k,v])=>`<th data-sort="${k}">${v} <span class="ar">${S.sort[0]===k?(S.sort[1]>0?'▲':'▼'):''}</span></th>`).join('')}</tr></thead>
+ <tbody>${rows.map(r=>`<tr class="${S.sel.has(r.id)?'sel':''}" data-open="${r.id}"><td data-stop><input type="checkbox" class="cb" data-pick="${r.id}" ${S.sel.has(r.id)?'checked':''} aria-label="Select"></td><td>${fmtDT(r.created_at)}</td><td class="nm"><b>${esc(r.name||'—')}</b><span>${esc(r.company||'')}</span></td><td>${esc(r.email)}</td><td><span class="kind">${KIND[r.kind]||r.kind}</span></td><td>${esc(COUNTRY[country(r)]||country(r)||'—')}</td><td>${esc(r.plan||'—')}${r.billing?` <span class="muted small">${esc(r.billing)}</span>`:''}</td><td>${esc(src(r))}</td><td>${pill(r.status)}</td></tr>`).join('')}</tbody></table>${rows.length?'':'<div class="empty">No leads match these filters.</div>'}</div>`}
+
+function range(){const now=new Date();let to=new Date(now),from;
+ if(S.period==='all'){const ts=S.rows.map(r=>+new Date(r.created_at));from=new Date(ts.length?Math.min(...ts):now-30*864e5)}
+ else if(S.period==='m'){from=new Date(now.getFullYear(),now.getMonth(),1)}
+ else if(S.period==='y'){from=new Date(now.getFullYear(),0,1)}
+ else if(S.period==='c'){from=S.from?new Date(S.from):new Date(now-30*864e5);to=S.to?new Date(S.to+'T23:59:59'):now}
+ else from=new Date(now-(+S.period)*864e5);
+ from.setHours(0,0,0,0);return[from,to]}
+function inR(r,a,b){const t=new Date(r.created_at);return t>=a&&t<=b}
+function vStats(){const base=filtered();const[a,b]=range();const len=b-a;
+ let pa=null,pb=null;if(S.cmp==='prev'){pb=new Date(+a-1);pa=new Date(+a-len)}else if(S.cmp==='yoy'){pa=new Date(a);pa.setFullYear(pa.getFullYear()-1);pb=new Date(b);pb.setFullYear(pb.getFullYear()-1)}
+ const cur=base.filter(r=>inR(r,a,b)),prv=pa?base.filter(r=>inR(r,pa,pb)):null;
+ const reached=(rows,st)=>{const ord=['new','contacted','demo','trial','won'];const i=ord.indexOf(st);return rows.filter(r=>ord.indexOf(r.status)>=i&&r.status!=='lost').length+(st==='new'?rows.filter(r=>r.status==='lost').length:0)};
+ const K=rows=>({all:rows.filter(r=>r.status!=='spam').length,demo:rows.filter(r=>r.kind==='demo').length,ea:rows.filter(r=>r.kind==='early_access').length,call:rows.filter(r=>r.kind==='demo_call').length,won:rows.filter(r=>r.status==='won').length,opt:rows.filter(r=>r.marketing_opt_in).length});
+ const kc=K(cur),kp=prv?K(prv):null;
+ const dl=(c,p)=>{if(p==null)return '';if(!p)return c?'<span class="d up">new</span>':'<span class="d muted">—</span>';const v=Math.round((c-p)/p*100);return `<span class="d ${v>=0?'up':'dn'}">${v>=0?'+':''}${v}% <span class="muted">(${p})</span></span>`};
+ const conv=kc.all?Math.round(kc.won/kc.all*1000)/10:0;
+ const kpi=(k,v,c,p)=>`<div class="card kpi"><div class="k">${k}</div><div class="v">${v}</div>${dl(c,p)}</div>`;
+ // buckets by day or week
+ const days=Math.ceil(len/864e5)+1,step=days>120?30:days>45?7:1,n=Math.max(1,Math.ceil(days/step));
+ const bucket=(rows,start)=>{const arr=new Array(n).fill(0);rows.forEach(r=>{const i=Math.floor((new Date(r.created_at)-start)/(step*864e5));if(i>=0&&i<n)arr[i]++});return arr};
+ const bc=bucket(cur,a),bp=prv?bucket(prv,pa):null;const mx=Math.max(1,...bc,...(bp||[0]));
+ const lbl=d=>d.toLocaleDateString('en-GB',{day:'2-digit',month:'short'});
+ const groups=(fn,lab)=>{const m={};cur.forEach(r=>{const k=fn(r)||'—';m[k]=(m[k]||0)+1});const pm={};(prv||[]).forEach(r=>{const k=fn(r)||'—';pm[k]=(pm[k]||0)+1});const e=Object.entries(m).sort((x,y)=>y[1]-x[1]).slice(0,10);const top=Math.max(1,...e.map(x=>x[1]));
+  return e.map(([k,v])=>`<div class="hb"><span>${esc(lab?lab(k):k)}</span><span class="t"><i style="width:${v/top*100}%"></i></span><span class="n">${v}${prv?` <small>/${pm[k]||0}</small>`:''}</span></div>`).join('')||'<p class="muted small">No data in this period.</p>'};
+ const fun=['new','contacted','demo','trial','won'].map(s=>[s,reached(cur,s)]);const f0=Math.max(1,fun[0][1]);
+ return filterBar(true)+`<div class="kpis">${kpi('Leads',kc.all,kc.all,kp&&kp.all)}${kpi('Live demo',kc.demo,kc.demo,kp&&kp.demo)}${kpi('Early access',kc.ea,kc.ea,kp&&kp.ea)}${kpi('Demo calls',kc.call,kc.call,kp&&kp.call)}${kpi('Won',kc.won,kc.won,kp&&kp.won)}${kpi('Lead → won',conv+'%',null,null)}${kpi('News opt-in',kc.opt,kc.opt,kp&&kp.opt)}</div>
+ <div class="grid2"><div class="card panel" style="grid-column:1/-1"><h3>Leads by ${step===1?'day':step===7?'week':'month'}</h3>${prv?`<div class="leg"><span>Current</span><span class="p">${S.cmp==='yoy'?'Year ago':'Previous period'}</span></div>`:''}
+ <div class="chart">${bc.map((v,i)=>`<div class="c" title="${lbl(new Date(+a+i*step*864e5))}: ${v}${bp?' / '+bp[i]:''}">${bp?`<i class="p" style="height:${bp[i]/mx*100}%"></i>`:''}<i style="height:${v/mx*100}%"></i></div>`).join('')}</div>
+ <div class="xl"><span>${lbl(a)}</span><span>${lbl(new Date((+a+ +b)/2))}</span><span>${lbl(b)}</span></div></div>
+ <div class="card panel"><h3>Sales funnel</h3>${fun.map(([s,v])=>`<div class="hb"><span>${stName(s)}</span><span class="t"><i style="width:${v/f0*100}%;background:var(--s-${s})"></i></span><span class="n">${v} <small>${Math.round(v/f0*100)}%</small></span></div>`).join('')}<p class="muted small" style="margin:8px 0 0">Share of leads that reached each stage (lost leads count only in “New”).</p></div>
+ <div class="card panel"><h3>By form</h3>${groups(r=>r.kind,k=>KIND[k]||k)}</div>
+ <div class="card panel"><h3>By country</h3>${groups(country,k=>COUNTRY[k]||k)}</div>
+ <div class="card panel"><h3>By source</h3>${groups(src)}</div>
+ <div class="card panel"><h3>By plan interest</h3>${groups(r=>r.plan)}</div></div>`}
+
+function drawer(){const r=S.rows.find(x=>x.id===S.open);if(!r)return '';const d=(k,v)=>v?`<dt>${k}</dt><dd>${v}</dd>`:'';
+ return `<div class="scrim" data-a="dclose"></div><aside class="drawer" aria-label="Lead details"><div class="dh"><div><h2>${esc(r.company||r.name||r.email)}</h2><div class="muted small">${KIND[r.kind]||r.kind} · ${fmtDT(r.created_at)}</div></div><button class="x" data-a="dclose" aria-label="Close">×</button></div>
+ <div class="db"><label class="small muted">Stage<br><select class="sel" data-stage="${r.id}" style="margin-top:6px;min-width:200px">${ALLST.map(([k,v])=>`<option value="${k}" ${r.status===k?'selected':''}>${v}</option>`).join('')}</select></label>
+ <dl class="kv">${d('Name',esc(r.name))}${d('Email',`<a href="mailto:${esc(r.email)}">${esc(r.email)}</a>`)}${d('Phone',r.phone?`<a href="tel:${esc(r.phone)}">${esc(r.phone)}</a>`:'')}${d('Company',esc(r.company))}${d('Country',esc(COUNTRY[country(r)]||country(r)))}${d('City',esc(r.city))}${d('VAT ID',esc(r.vat_id))}${d('Plan',esc((r.plan||'')+(r.billing?' · '+r.billing:'')))}${d('Language',esc(r.language))}${d('Source',esc(src(r)))}${d('Campaign',r.utm?esc(Object.entries(r.utm).map(([k,v])=>k+'='+v).join(', ')):'')}${d('Page',esc(r.page))}${d('News opt-in',r.marketing_opt_in?'Yes':'No')}${d('Consent',esc(r.consent_text))}${d('Updated',r.updated_at?fmtDT(r.updated_at):'')}</dl>
+ <label class="small muted">Notes<textarea data-note="${r.id}" placeholder="Call notes, next step, decision maker…">${esc(r.note||'')}</textarea></label></div>
+ <div class="df"><button class="btn pri" data-a="savenote">Save note</button><a class="btn" href="mailto:${esc(r.email)}?subject=${encodeURIComponent('Rigvo — '+(r.company||'your request'))}">Email</a>${r.phone?`<a class="btn" href="tel:${esc(r.phone)}">Call</a>`:''}</div></aside>`}
+
+function vLogin(){return `<div class="login"><form id="lf"><span class="rv-logo" style="font-size:34px">r<span class="rv-i">ı<span class="rv-dot"></span></span>gvo</span><b style="font-size:18px">Sales CRM</b>
+ <label class="small" style="color:#B5B5AE">Admin password<input type="password" id="lp" autocomplete="current-password" style="width:100%;margin-top:6px" required></label>${S.err?`<p class="err">${esc(S.err)}</p>`:''}<button class="btn pri" type="submit">Sign in</button></form></div>`}
+function vSetup(){return `<div class="note"><b>The database is not connected yet.</b><br>Add <code>SUPABASE_URL</code>, <code>SUPABASE_SERVICE_KEY</code> and <code>ADMIN_PASSWORD</code> in Vercel → Settings → Environment Variables, then redeploy.</div>`}
+
+function render(){const app=$('#app');
+ if(!S.pass){app.innerHTML=vLogin();setTimeout(()=>{const p=$('#lp');p&&p.focus()},30);return}
+ const sy=scrollY,tw=$('.tw'),tws=tw?tw.scrollTop:0,ae=document.activeElement,af=ae&&ae.dataset&&ae.dataset.in,pos=ae&&ae.selectionStart;
+ const body=!S.conf?vSetup():S.loading&&!S.rows.length?'<div class="empty">Loading…</div>':S.tab==='pipeline'?vPipeline():S.tab==='leads'?vTable():vStats();
+ app.innerHTML=`<header class="top"><span class="rv-logo" style="font-size:26px">r<span class="rv-i">ı<span class="rv-dot"></span></span>gvo</span><span class="t">Sales CRM</span>
+ <nav>${[['pipeline','Pipeline'],['leads','Leads'],['stats','Stats']].map(([k,v])=>`<button data-tab="${k}" class="${S.tab===k?'on':''}">${v}</button>`).join('')}</nav><span class="sp"></span>
+ <button class="ib" data-a="reload" title="Reload">↻</button><button class="ib hm" data-a="csv">Export CSV</button><button class="ib hm" data-a="theme">Theme</button><button class="ib" data-a="out">Log out</button></header>
+ <main><div class="view" data-v="${S.tab}">${body}</div></main>${S.open?drawer():''}`;
+ const v=$('.view');if(v&&render._last===S.tab)v.style.animation='none';render._last=S.tab;
+ scrollTo(0,sy);const t2=$('.tw');if(t2)t2.scrollTop=tws;
+ if(af){const el=document.querySelector(`[data-in="${af}"]`);if(el){el.focus();try{if(pos!=null)el.setSelectionRange(pos,pos)}catch(e){}}}
+ if(S.open&&render._open===S.open){const d=$('.drawer'),s=$('.scrim');d&&(d.style.animation='none');s&&(s.style.animation='none')}render._open=S.open}
+
+function csv(rows){const cols=['created_at','kind','status','name','email','company','phone','country','city','vat_id','plan','billing','language','marketing_opt_in','note','page','referrer'];
+ const q=v=>{v=v==null?'':typeof v==='object'?JSON.stringify(v):String(v);return /[",\n;]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v};
+ const text='﻿'+[cols.join(',')].concat(rows.map(r=>cols.map(c=>q(c==='country'?country(r):r[c])).join(','))).join('\n');
+ const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([text],{type:'text/csv;charset=utf-8'}));a.download='rigvo-leads-'+new Date().toISOString().slice(0,10)+'.csv';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
+function closeDrawer(){const d=$('.drawer'),s=$('.scrim');if(!d){S.open=null;render();return}d.classList.add('out');s&&s.classList.add('out');setTimeout(()=>{S.open=null;render()},170)}
+
+document.addEventListener('submit',e=>{if(e.target.id==='lf'){e.preventDefault();S.pass=$('#lp').value;S.err='';try{sessionStorage.setItem('rigvo_admin',S.pass)}catch(x){}load()}});
+document.addEventListener('input',e=>{const k=e.target.dataset.in;if(!k)return;S[k]=e.target.value;if(k==='q'){clearTimeout(render._t);render._t=setTimeout(render,120)}else render()});
+document.addEventListener('change',e=>{const t=e.target;
+ if(t.dataset.stage){setStatus([t.dataset.stage],t.value);return}
+ if(t.hasAttribute('data-bulk')&&t.value){setStatus([...S.sel],t.value);S.sel.clear();return}
+ if(t.dataset.pick){t.checked?S.sel.add(t.dataset.pick):S.sel.delete(t.dataset.pick);render();return}
+ if(t.dataset.a==='all'){const rows=filtered();t.checked?rows.forEach(r=>S.sel.add(r.id)):S.sel.clear();render()}});
+document.addEventListener('click',async e=>{const t=e.target;
+ const tab=t.closest('[data-tab]');if(tab){S.tab=tab.dataset.tab;S.sel.clear();render();return}
+ const per=t.closest('[data-period]');if(per){S.period=per.dataset.period;render();return}
+ const th=t.closest('th[data-sort]');if(th){const k=th.dataset.sort;S.sort=[k,S.sort[0]===k?-S.sort[1]:1];render();return}
+ if(t.closest('[data-stop]'))return;
+ const a=t.closest('[data-a]');if(a){const v=a.dataset.a;
+  if(v==='reload')load();if(v==='out')logout();if(v==='csv')csv(sorted(filtered()));if(v==='csvsel')csv(S.rows.filter(r=>S.sel.has(r.id)));
+  if(v==='clr'){S.sel.clear();render()}if(v==='dclose')closeDrawer();
+  if(v==='theme'){const d=document.documentElement;d.dataset.theme=d.dataset.theme==='dark'?'light':'dark'}
+  if(v==='savenote'){const ta=$('[data-note]');const r=S.rows.find(x=>x.id===ta.dataset.note);try{await api('PATCH',{id:r.id,note:ta.value});r.note=ta.value;toast('Note saved')}catch(x){toast('Not saved')}}
+  return}
+ const o=t.closest('[data-open]');if(o){S.open=o.dataset.open;render()}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(S.open)closeDrawer();else if(S.sel.size){S.sel.clear();render()}}});
+// drag & drop between pipeline stages
+document.addEventListener('dragstart',e=>{const c=e.target.closest('[data-drag]');if(!c)return;e.dataTransfer.setData('text/plain',c.dataset.drag);e.dataTransfer.effectAllowed='move';setTimeout(()=>c.classList.add('drag'),0)});
+document.addEventListener('dragend',e=>{const c=e.target.closest('[data-drag]');c&&c.classList.remove('drag');document.querySelectorAll('.col.over').forEach(x=>x.classList.remove('over'))});
+document.addEventListener('dragover',e=>{const c=e.target.closest('[data-drop]');if(!c)return;e.preventDefault();document.querySelectorAll('.col.over').forEach(x=>x!==c&&x.classList.remove('over'));c.classList.add('over')});
+document.addEventListener('drop',e=>{const c=e.target.closest('[data-drop]');if(!c)return;e.preventDefault();const id=e.dataTransfer.getData('text/plain');c.classList.remove('over');if(id)setStatus([id],c.dataset.drop)});
+if(S.pass)load();else render();
+</script>
+</body>
+</html>

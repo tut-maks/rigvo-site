@@ -67,7 +67,7 @@ details[open]>summary::after{transform:translateY(2px) rotate(225deg)}
 <a href="#faq" style="color: #D6D6D2; text-decoration: none">FAQ</a>
 </nav>
 <div style="display: flex; align-items: center; gap: 12px">
-<a href="demo.html" style="color: #D6D6D2; text-decoration: none; font-size: 15px; padding: 10px 8px">Live demo</a>
+<a href="demo.html" data-gate style="color: #FFD400; text-decoration: none; font-size: 15px; font-weight: 600; padding: 10px 14px; border: 1px solid #FFD400; border-radius: 8px">Try live demo</a>
 <a href="login.html" style="color: #FFFFFF; text-decoration: none; font-size: 15px; padding: 10px 12px; border: 1px solid #3A3A36; border-radius: 8px">Log in</a>
 <a href="signup.html" style="background: #FFD400; color: #0E0E0E; text-decoration: none; font-weight: 600; font-size: 15px; padding: 12px 18px; border-radius: 8px">Get early access</a>
 </div>
@@ -101,7 +101,7 @@ details[open]>summary::after{transform:translateY(2px) rotate(225deg)}
 <button type="button" data-mk="projects">Projects</button>
 <button type="button" data-mk="equipment">Equipment</button>
 <button type="button" data-mk="team">Team</button>
-<a class="mk-full" href="demo.html">Open full demo →</a>
+<a class="mk-full" href="demo.html" data-gate>Open full demo →</a>
 </nav>
 <div class="mk-main" id="mkMain" aria-live="polite"></div>
 </div>
@@ -282,6 +282,9 @@ details[open]>summary::after{transform:translateY(2px) rotate(225deg)}
 <span>© 2026 Rigvo.app</span>
 <div style="display: flex; flex-wrap: wrap; gap: 24px">
 <a href="privacy.html" style="color: #C9C9C4; text-decoration: none">Privacy</a>
+<a href="terms.html" style="color: #C9C9C4; text-decoration: none">Terms</a>
+<a href="cookies.html" style="color: #C9C9C4; text-decoration: none">Cookies</a>
+<a href="#" data-cookie-settings style="color: #C9C9C4; text-decoration: none">Cookie settings</a>
 <a href="imprint.html" style="color: #C9C9C4; text-decoration: none">Imprint</a>
 <a href="mailto:hello@rigvo.app" style="color: #C9C9C4; text-decoration: none">hello@rigvo.app</a>
 </div>
@@ -302,11 +305,11 @@ details[open]>summary::after{transform:translateY(2px) rotate(225deg)}
 </form></div>
 <script>
 const M=document.getElementById('modal'),T=document.getElementById('mtitle'),S=document.getElementById('msub'),B=document.querySelector('#mform button[type=submit]'),OK=document.getElementById('mok');
-document.querySelectorAll('[data-modal]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();const d=a.dataset.modal==='demo';T.textContent=d?'Book a demo':'Start your free trial';S.textContent=d?'A 30-minute call with a walkthrough on your own stock list.':'30 days, no card required.';B.textContent=d?'Request a demo':'Create workspace';OK.style.display='none';M.style.display='flex';M.querySelector('input').focus()}));
+document.querySelectorAll('[data-modal]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();const d=a.dataset.modal==='demo';T.textContent=d?'Book a demo':'Start your free trial';S.textContent=d?'A 30-minute call with a walkthrough on your own stock list.':'30 days, no card required.';B.textContent=d?'Request a demo':'Create workspace';OK.style.display='none';M.style.display='flex';M.animate([{opacity:0},{opacity:1}],{duration:180});M.firstElementChild.animate([{opacity:0,transform:'translateY(10px)'},{opacity:1,transform:'none'}],{duration:240,easing:'cubic-bezier(.2,.8,.2,1)'});M.querySelector('input').focus()}));
 document.getElementById('mclose').onclick=()=>M.style.display='none';
 M.addEventListener('click',e=>{if(e.target===M)M.style.display='none'});
 addEventListener('keydown',e=>{if(e.key==='Escape')M.style.display='none'});
-document.getElementById('mform').addEventListener('submit',async e=>{e.preventDefault();const f=new FormData(e.target);B.disabled=true;try{await sendLead('Demo request',{company:f.get('c'),email:f.get('e'),country:f.get('k')});OK.style.display='block'}catch(x){OK.textContent='Could not send — please email hello@rigvo.app';OK.style.display='block'}B.disabled=false});
+document.getElementById('mform').addEventListener('submit',async e=>{e.preventDefault();const f=new FormData(e.target);B.disabled=true;try{await sendLead('demo_call',{company:f.get('c'),email:f.get('e'),country:f.get('k'),consent_text:'Demo call request'});OK.style.display='block'}catch(x){OK.textContent='Could not send — please email hello@rigvo.app';OK.style.display='block'}B.disabled=false});
 document.querySelectorAll('a[href^="#"]:not([data-modal])').forEach(a=>a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'})}}));
 </script>
 <script>
@@ -356,6 +359,63 @@ document.querySelectorAll('details').forEach(d=>{const s=d.querySelector('summar
   if(!d.open){d.open=true;const h=c.scrollHeight;d._busy=1;c.animate([{height:'0px',opacity:0},{height:h+'px',opacity:1}],opt).onfinish=()=>{d._busy=0}}
   else{const h=c.scrollHeight;d._busy=1;c.animate([{height:h+'px',opacity:1},{height:'0px',opacity:0}],opt).onfinish=()=>{d.open=false;d._busy=0}}})})})();
 </script>
+<script src="consent.js"></script>
 <script src="lead.js"></script>
+<div id="gate" role="dialog" aria-modal="true" aria-labelledby="gtitle" hidden>
+<form id="gform" novalidate>
+<button type="button" class="gx" id="gclose" aria-label="Close">×</button>
+<p class="gk">Live demo · sample rental company</p>
+<h3 id="gtitle">See Rigvo on a real-looking business</h3>
+<p class="gs">Quotes, stock, picking, crew and profit — click through everything. Takes 10 seconds to open.</p>
+<label>Your name<input name="name" autocomplete="name" required></label>
+<label>Work email<input name="email" type="email" inputmode="email" autocomplete="email" required></label>
+<label><span style="font-weight:600;color:inherit">Company <span>(optional)</span></span><input name="company" autocomplete="organization"></label>
+<input name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
+<label class="gc"><input type="checkbox" name="opt"> Send me Rigvo product news (about once a month). Unsubscribe anytime.</label>
+<p class="gerr" id="gerr" role="alert"></p>
+<button type="submit" class="gb" id="gbtn">Upgrade your project →</button>
+<p class="gl">We use your email to follow up on the demo. <a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms</a></p>
+</form>
+</div>
+<style>
+#gate{position:fixed;inset:0;z-index:120;background:rgba(0,0,0,.62);display:flex;align-items:center;justify-content:center;padding:16px}
+#gate[hidden]{display:none}
+#gform{position:relative;background:#FFFFFF;color:#111110;border-radius:18px;padding:32px;width:100%;max-width:440px;display:flex;flex-direction:column;gap:14px;font-family:Geist,system-ui,sans-serif;max-height:calc(100vh - 32px);overflow:auto}
+#gform .gk{margin:0;font-size:12.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#8A6D00}
+#gform h3{margin:0;font-size:26px;line-height:1.15;letter-spacing:-.025em}
+#gform .gs{margin:0;color:#4A4A45;font-size:15.5px}
+#gform label{display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:600}
+#gform label span{font-weight:400;color:#6A6A64}
+#gform input:not([type=checkbox]){box-sizing:border-box;width:100%;font:inherit;font-size:16px;font-weight:400;padding:12px 13px;border:1px solid #CFCFC8;border-radius:10px;min-height:48px;outline:none}
+#gform input:focus{border-color:#111110;box-shadow:0 0 0 3px rgba(255,212,0,.45)}
+#gform input.bad{border-color:#C7372A}
+#gform .gc{flex-direction:row;align-items:flex-start;gap:10px;font-weight:400;color:#4A4A45;font-size:14px}
+#gform .gc input{width:20px;height:20px;margin:1px 0 0;accent-color:#111110;flex:none}
+#gform .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+#gform .gerr{margin:0;color:#C7372A;font-size:14px;min-height:0}
+#gform .gerr:empty{display:none}
+#gform .gb{font:inherit;font-weight:700;font-size:17px;background:#FFD400;color:#0E0E0E;border:0;border-radius:12px;padding:15px;min-height:52px;cursor:pointer}
+#gform .gb:hover{background:#FFE35C}
+#gform .gb[disabled]{opacity:.6;cursor:progress}
+#gform .gl{margin:0;font-size:12.5px;color:#6A6A64;text-align:center}#gform .gl a{color:#111110}
+#gform .gx{position:absolute;top:10px;right:10px;width:44px;height:44px;border:0;background:none;font-size:28px;line-height:1;cursor:pointer;color:#55554F;border-radius:10px}
+#gform .gx:hover{background:#F2F2EE}
+</style>
+<script>
+(function(){const G=document.getElementById('gate'),F=document.getElementById('gform'),E=document.getElementById('gerr'),B=document.getElementById('gbtn');let last=null;
+const known=()=>{try{return rigvoConsent().analytics&&localStorage.getItem('rigvo_demo_lead')==='1'}catch(e){return false}};
+function open(){G.hidden=false;document.body.style.overflow='hidden';G.animate([{opacity:0},{opacity:1}],{duration:180});F.animate([{opacity:0,transform:'translateY(12px) scale(.98)'},{opacity:1,transform:'none'}],{duration:260,easing:'cubic-bezier(.2,.8,.2,1)'});setTimeout(()=>F.name.focus(),60)}
+function close(){const a=G.animate([{opacity:1},{opacity:0}],{duration:160});F.animate([{opacity:1,transform:'none'},{opacity:0,transform:'translateY(8px)'}],{duration:160});a.onfinish=()=>{G.hidden=true;document.body.style.overflow='';last&&last.focus()}}
+document.addEventListener('click',e=>{const a=e.target.closest('[data-gate]');if(!a)return;if(known())return;e.preventDefault();last=a;open()});
+document.getElementById('gclose').onclick=close;G.addEventListener('click',e=>{if(e.target===G)close()});addEventListener('keydown',e=>{if(e.key==='Escape'&&!G.hidden)close()});
+F.addEventListener('submit',async e=>{e.preventDefault();E.textContent='';const n=F.name.value.trim(),m=F.email.value.trim();F.name.classList.toggle('bad',!n);const okm=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(m);F.email.classList.toggle('bad',!okm);
+ if(!n||!okm){E.textContent=!n?'Please enter your name.':'Please enter a valid work email.';(!n?F.name:F.email).focus();return}
+ B.disabled=true;B.textContent='Opening the demo…';
+ try{await sendLead('demo',{name:n,email:m,company:F.company.value.trim(),website:F.website.value,marketing_opt_in:F.opt.checked,consent_text:F.opt.checked?'Demo form + product news opt-in':'Demo form'},{noMailto:true})}catch(x){}
+ try{if(rigvoConsent().analytics)localStorage.setItem('rigvo_demo_lead','1')}catch(x){}
+ location.href='demo.html'});
+})();
+</script>
+
 </body>
 </html>
