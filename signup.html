@@ -217,7 +217,7 @@ const T={
   bill_m:'Щомісяця',bill_y:'За рік'}};
 const q=new URLSearchParams(location.search);
 const st={lang:(q.get('lang')||'').toLowerCase(),plan:q.get('plan')||'pro',bill:q.get('bill')==='y'?'y':'m',showPw:false};
-if(!T[st.lang]){const n=(navigator.language||'en').slice(0,2);st.lang=T[n]?n:'en'}
+if(!T[st.lang])st.lang='en';
 if(!PLANS.some(p=>p.id===st.plan))st.plan='pro';
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const L=()=>T[st.lang];
