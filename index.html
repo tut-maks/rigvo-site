@@ -12,7 +12,9 @@
 <style>body{margin:0;background:#F5F5F2}a{color:#111}html{scroll-behavior:smooth}
 @media (max-width:640px){h1{font-size:40px!important}h2{font-size:32px!important}#tracking>div{padding:28px!important}}</style>
 <style>
-.mk{background:#FAFAF8;color:#111;border-radius:16px;overflow:hidden;display:flex;width:100%;height:604px;align-self:center;box-shadow:0 30px 80px rgba(0,0,0,.45);border:1px solid #2A2A27;font-size:14px}
+.mk-wrap{flex:1 1 520px;min-width:0;position:relative;height:600px}
+@media (min-width:1060px){.mk-wrap{height:auto}.mk-wrap .mk{position:absolute;inset:0}}
+.mk{background:#FAFAF8;color:#111;border-radius:16px;overflow:hidden;display:flex;width:100%;height:100%;box-shadow:0 30px 80px rgba(0,0,0,.45);border:1px solid #2A2A27;font-size:14px}
 .mk-side{background:#0E0E0E;color:#D6D6D2;width:168px;flex:0 0 168px;padding:18px 12px;display:flex;flex-direction:column;gap:3px;border-right:1px solid #262623}
 .mk-h{font-size:11px;color:#8A8A84;letter-spacing:.08em;padding:12px 10px 4px}.mk-h:first-child{padding-top:4px}
 .mk-side button{font:inherit;font-size:14.5px;text-align:left;background:none;color:#D6D6D2;border:0;border-left:3px solid transparent;border-radius:7px;padding:10px 10px;cursor:pointer;min-height:40px}
@@ -20,11 +22,11 @@
 .mk-side button.on{background:#222220;color:#fff;border-left-color:#FFD400}
 .mk-side button:focus-visible{outline:2px solid #FFD400;outline-offset:1px}
 .mk-full{margin-top:auto;color:#FFD400;text-decoration:none;font-size:13px;font-weight:600;padding:10px}
-.mk-main{flex:1 1 auto;min-width:0;padding:22px;overflow-y:auto;display:flex;flex-direction:column;gap:12px;animation:mkin .18s ease}
+.mk-main{flex:1 1 auto;min-width:0;padding:20px;overflow-y:auto;display:flex;flex-direction:column;gap:10px;animation:mkin .18s ease}
 @keyframes mkin{from{opacity:.4;transform:translateY(3px)}to{opacity:1;transform:none}}
 .mk-t{font-size:22px;font-weight:700;letter-spacing:-.02em;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}.mk-t small{font-size:12.5px;font-weight:500;color:#6A6A64}
 .mk-g{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-.mk-c{background:#fff;border:1px solid #E6E6E1;border-radius:10px;padding:12px 14px}
+.mk-c{background:#fff;border:1px solid #E6E6E1;border-radius:10px;padding:10px 14px}
 .mk-k{font-size:12px;color:#55554F}.mk-v{font-size:25px;font-weight:700;letter-spacing:-.02em}.mk-d{font-size:12px;font-weight:600}.up{color:#138A4C}.dn{color:#B42318}
 .mk-c h4{margin:0 0 6px;font-size:14px}
 .mk-r{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 0;border-top:1px solid #EFEFEA;font-size:13px}.mk-r:first-of-type{border-top:0}
@@ -34,10 +36,10 @@
 .mk-btn{font:inherit;font-size:12.5px;font-weight:600;border:1px solid #D2D2CB;background:#fff;border-radius:7px;padding:6px 10px;cursor:pointer;white-space:nowrap;min-height:32px}
 .mk-btn.pri{background:#FFD400;border-color:#FFD400}.mk-btn.done{background:#E3F5EA;border-color:#BFE6CF;color:#116B3B;cursor:default}
 .bar{height:6px;border-radius:6px;background:#EFEFEA;overflow:hidden;width:90px;flex:none}.bar i{display:block;height:100%;border-radius:6px}
-.chart{display:flex;align-items:flex-end;gap:6px;height:84px;padding-top:6px}.chart div{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:10px;color:#6A6A64}.chart b{display:block;width:100%;border-radius:4px 4px 0 0;background:#E2E2DC}.chart div:last-child b{background:#FFD400}
+.chart{display:flex;align-items:flex-end;gap:6px;height:52px;padding-top:2px}.chart div{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:10px;color:#6A6A64}.chart b{display:block;width:100%;border-radius:4px 4px 0 0;background:#E2E2DC}.chart div:last-child b{background:#FFD400}
 .live{display:flex;gap:8px;align-items:center;background:#FFF8D6;border:1px solid #F0DA7A;border-radius:10px;padding:10px 12px;font-size:13px}.live i{width:8px;height:8px;border-radius:50%;background:#138A4C;flex:none;box-shadow:0 0 0 4px rgba(19,138,76,.15)}
 .mk-note{margin-top:auto;font-size:11px;color:#6A6A64}
-@media (max-width:640px){.mk{flex-direction:column;height:640px}.mk-side{width:auto;flex:none;flex-direction:row;overflow-x:auto;padding:10px;gap:4px;border-right:0;border-bottom:1px solid #262623}.mk-h{display:none}.mk-side button{flex:none;border-left:0;border-bottom:3px solid transparent;border-radius:7px}.mk-side button.on{border-bottom-color:#FFD400}.mk-full{margin:0;flex:none;align-self:center;white-space:nowrap}.mk-main{padding:16px}.mk-g{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){.mk-wrap{height:640px}.mk{flex-direction:column}.mk-side{width:auto;flex:none;flex-direction:row;overflow-x:auto;padding:10px;gap:4px;border-right:0;border-bottom:1px solid #262623}.mk-h{display:none}.mk-side button{flex:none;border-left:0;border-bottom:3px solid transparent;border-radius:7px}.mk-side button.on{border-bottom-color:#FFD400}.mk-full{margin:0;flex:none;align-self:center;white-space:nowrap}.mk-main{padding:16px}.mk-g{grid-template-columns:1fr 1fr}}
 </style>
 <style>
 summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px}
@@ -87,7 +89,7 @@ details[open]>summary::after{transform:translateY(2px) rotate(225deg)}
 </div>
 
 <!-- product mockup (interactive mini demo) -->
-<div style="flex: 1 1 520px; min-width: 0; display: flex">
+<div class="mk-wrap">
 <div class="mk" id="mk">
 <nav class="mk-side" aria-label="Demo sections">
 <div class="mk-h">WORKSPACE</div>
@@ -318,7 +320,7 @@ overview:()=>`<div class="mk-t">Business overview <small>October 2026</small></d
 <div class="mk-g"><div class="mk-c"><div class="mk-k">Quotes awaiting approval</div><div class="mk-v">7</div></div><div class="mk-c"><div class="mk-k">Active projects</div><div class="mk-v">12</div></div>
 <div class="mk-c"><div class="mk-k">Revenue October</div><div class="mk-v">€284k</div><div class="mk-d up">+14% vs last year</div></div><div class="mk-c"><div class="mk-k">Receivables</div><div class="mk-v">€41.2k</div><div class="mk-d dn">€19.6k overdue</div></div></div>
 <div class="mk-c"><h4>Needs attention</h4>${R(L('Follow up on quote Q-1042'),'<span class="m">Today</span>')}${R(L('Confirm crew for Product Launch'),'<span class="m">12 Oct</span>')}${R(L('Shortage: 2 wireless mics'),P('15 Oct','p-y'))}</div>
-<div class="mk-c"><h4>Revenue by month, k€</h4><div class="chart">${[[172,'May'],[198,'Jun'],[164,'Jul'],[143,'Aug'],[251,'Sep'],[284,'Oct']].map(x=>`<div><b style="height:${Math.round(x[0]/284*64)}px"></b>${x[1]}</div>`).join('')}</div></div>`,
+<div class="mk-c"><h4>Revenue by month, k€</h4><div class="chart">${[[172,'May'],[198,'Jun'],[164,'Jul'],[143,'Aug'],[251,'Sep'],[284,'Oct']].map(x=>`<div><b style="height:${Math.round(x[0]/284*38)}px"></b>${x[1]}</div>`).join('')}</div></div>`,
 day:()=>`<div class="mk-t">My day <small>4 actions · 2 need you now</small></div>
 <div class="mk-c">${R(L('Approve quote Q-1032 · Nordlicht','12% discount above limit · Jonas'),'<button type="button" class="mk-btn pri" data-done="Approved ✓">Approve</button>')}
 ${R(L('Call Atlas Studio','opened quote Q-1031 four times'),'<button type="button" class="mk-btn" data-done="Called ✓">Call</button>')}
