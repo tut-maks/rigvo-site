@@ -49,6 +49,11 @@ details[open]>summary::after{transform:translateY(2px) rotate(225deg)}
 .dc{overflow:hidden}
 @media (prefers-reduced-motion:reduce){summary::after{transition:none}}
 </style>
+<style>
+.rv-lang{font:inherit;font-size:14px;background:transparent;color:#D6D6D2;border:1px solid #3A3A36;border-radius:8px;padding:9px 8px;min-height:42px;cursor:pointer;max-width:150px}
+.rv-lang option{color:#111}
+@media (max-width:640px){.navr{flex-wrap:wrap;width:100%;gap:8px!important}.navr>*{flex:1 1 auto;text-align:center}.navr .rv-lang{width:100%;max-width:none}}
+</style>
 </head>
 <body>
 
@@ -66,7 +71,8 @@ details[open]>summary::after{transform:translateY(2px) rotate(225deg)}
 <a href="#pricing" style="color: #D6D6D2; text-decoration: none">Pricing</a>
 <a href="#faq" style="color: #D6D6D2; text-decoration: none">FAQ</a>
 </nav>
-<div style="display: flex; align-items: center; gap: 12px">
+<div class="navr" style="display: flex; align-items: center; gap: 12px">
+<span data-lang-picker></span>
 <a href="demo.html" data-gate style="color: #FFD400; text-decoration: none; font-size: 15px; font-weight: 600; padding: 10px 14px; border: 1px solid #FFD400; border-radius: 8px">Try live demo</a>
 <a href="login.html" style="color: #FFFFFF; text-decoration: none; font-size: 15px; padding: 10px 12px; border: 1px solid #3A3A36; border-radius: 8px">Log in</a>
 <a href="signup.html" style="background: #FFD400; color: #0E0E0E; text-decoration: none; font-weight: 600; font-size: 15px; padding: 12px 18px; border-radius: 8px">Get early access</a>
@@ -85,7 +91,7 @@ details[open]>summary::after{transform:translateY(2px) rotate(225deg)}
 <a href="signup.html" style="background: #FFD400; color: #0E0E0E; text-decoration: none; font-weight: 600; font-size: 17px; padding: 16px 24px; border-radius: 10px">Get early access</a>
 <a href="demo.html" data-gate style="color: #FFFFFF; text-decoration: none; font-weight: 600; font-size: 17px; padding: 15px 23px; border-radius: 10px; border: 1px solid #3A3A36">Try live demo</a>
 </div>
-<p style="margin: 0; font-size: 14px; color: #9A9A94">Now onboarding the first rental companies · English, Deutsch, Español, Polski</p>
+<p style="margin: 0; font-size: 14px; color: #9A9A94">Now onboarding the first rental companies · English, Deutsch, Español, Polski, Français, Português, Italiano</p>
 </div>
 
 <!-- product mockup (interactive mini demo) -->
@@ -222,6 +228,25 @@ details[open]>summary::after{transform:translateY(2px) rotate(225deg)}
 
 </div>
 <p style="margin: 20px 0 0; font-size: 15px; color: #4A4A45">All plans: 14-day free trial, no card · 19+ users — custom plan · prices excl. VAT · we move your data from spreadsheets for you.</p>
+<div id="addons" style="margin-top: 56px">
+<h3 style="margin: 0 0 8px; font-size: 28px; letter-spacing: -0.02em; font-weight: 800">Setup &amp; add-ons</h3>
+<p style="margin: 0 0 24px; font-size: 17px; color: #4A4A45; max-width: 720px">Rigvo is fully self-serve: sign up, import, start. If you want help or something made just for you, add it on top.</p>
+<div class="ao">
+<div class="aoc"><div class="aot">Done-for-you setup</div><div class="aop">€1,500 <span>one-off</span></div><p>We import your stock, clients and prices from Excel or your old system, set up quote templates and roles, and record short training videos for your team.</p></div>
+<div class="aoc"><div class="aot">Your brand</div><div class="aop">+€149 <span>/ month</span></div><p>Rigvo on your own address (crm.yourcompany.com) with your logo and colours. Quotes go out under your name.</p></div>
+<div class="aoc"><div class="aot">Website widget</div><div class="aop">+€79 <span>/ month</span></div><p>Your catalogue with live availability on your website and a “Request a quote” button. Requests land straight in Rigvo.</p></div>
+<div class="aoc"><div class="aot">Custom modules &amp; integrations</div><div class="aop"><span>from</span> €2,000</div><p>A feature or connection your business needs, built into Rigvo by us — specified and agreed in writing.</p></div>
+<div class="aoc"><div class="aot">Dedicated instance</div><div class="aop"><span>from</span> €799 <span>/ month</span></div><p>A separate database and server for larger companies, single sign-on and a contract with guaranteed service levels.</p></div>
+</div>
+<p style="margin: 16px 0 0; font-size: 14px; color: #6A6A64">Available at launch · prices excl. VAT</p>
+</div>
+<style>
+.ao{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
+.aoc{background:#FFFFFF;border:1px solid #E6E6E1;border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:8px}
+.aot{font-weight:700;font-size:16px}
+.aop{font-size:24px;font-weight:800;letter-spacing:-.02em}.aop span{font-size:14px;font-weight:500;color:#55554F}
+.aoc p{margin:0;font-size:14.5px;line-height:1.5;color:#4A4A45}
+</style>
 </div>
 </section>
 
@@ -344,6 +369,7 @@ document.querySelectorAll('details').forEach(d=>{const s=d.querySelector('summar
   if(!d.open){d.open=true;const h=c.scrollHeight;d._busy=1;c.animate([{height:'0px',opacity:0},{height:h+'px',opacity:1}],opt).onfinish=()=>{d._busy=0}}
   else{const h=c.scrollHeight;d._busy=1;c.animate([{height:h+'px',opacity:1},{height:'0px',opacity:0}],opt).onfinish=()=>{d.open=false;d._busy=0}}})})})();
 </script>
+<script src="i18n/site.js"></script>
 <script src="consent.js"></script>
 <script src="lead.js"></script>
 <div id="gate" role="dialog" aria-modal="true" aria-labelledby="gtitle" hidden>

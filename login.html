@@ -25,10 +25,11 @@ button{width:100%;border:0;border-radius:12px;background:var(--a);color:#0E0E0E;
 .msg{display:none;margin-top:18px;padding:14px 16px;border-radius:12px;background:rgba(255,212,0,.08);border:1px solid rgba(255,212,0,.35);font-size:15px;line-height:1.5}
 .msg a{color:var(--a);font-weight:600}
 .foot{margin-top:22px;text-align:center;color:var(--mut);font-size:14px}.foot a{color:var(--tx);font-weight:600}
+.rv-lang{font:inherit;font-size:14px;background:transparent;color:#D6D6D2;border:1px solid #3A3A36;border-radius:8px;padding:9px 8px;min-height:42px}.rv-lang option{color:#111}
 </style>
 </head>
 <body>
-<header><a href="index.html" aria-label="Rigvo — home" style="text-decoration:none;color:#fff"><span class="rv-logo" style="font-size:30px">r<span class="rv-i">ı<span class="rv-dot"></span></span>gvo</span></a></header>
+<header style="display:flex;align-items:center;justify-content:space-between;gap:12px"><a href="index.html" aria-label="Rigvo — home" style="text-decoration:none;color:#fff"><span class="rv-logo" style="font-size:30px">r<span class="rv-i">ı<span class="rv-dot"></span></span>gvo</span></a><span data-lang-picker></span></header>
 <main>
 <form class="card" id="f" novalidate>
 <h1>Log in</h1>
@@ -53,6 +54,7 @@ f.addEventListener('submit',e=>{e.preventDefault();const em=document.getElementB
  if(!em||!pw){show('Enter your email and password.');return}
  show('Wrong email or password. Rigvo is in early access — workspaces are opened personally. <a href="signup.html">Request access</a> or <a href="demo.html">open the live demo</a>.')});
 </script>
+<script src="i18n/site.js"></script>
 <script src="consent.js"></script>
 </body>
 </html>

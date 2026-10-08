@@ -104,7 +104,7 @@ body.isdone .wrap{display:none}body.isdone .done{display:block}
  <span class="sp"></span>
  <span class="login"><a href="demo.html" data-t="login">Live demo →</a></span>
  <select class="lang" id="lang" aria-label="Language">
-  <option value="en">EN</option><option value="de">DE</option><option value="es">ES</option><option value="pl">PL</option>
+  <option value="en">EN</option><option value="de">DE</option><option value="es">ES</option><option value="pl">PL</option><option value="fr">FR</option><option value="pt">PT</option><option value="it">IT</option>
  </select>
 </header>
 
@@ -126,6 +126,9 @@ body.isdone .wrap{display:none}body.isdone .done{display:block}
      <option value="ES" data-vat="ES" data-ph="+34">España</option>
      <option value="PL" data-vat="PL" data-ph="+48">Polska</option>
      <option value="NL" data-vat="NL" data-ph="+31">Nederland</option>
+     <option value="BE" data-vat="BE" data-ph="+32">België / Belgique</option>
+     <option value="PT" data-vat="PT" data-ph="+351">Portugal</option>
+     <option value="CH" data-vat="CHE" data-ph="+41">Schweiz / Suisse</option>
      <option value="FR" data-vat="FR" data-ph="+33">France</option>
      <option value="IT" data-vat="IT" data-ph="+39">Italia</option>
      <option value="IE" data-vat="IE" data-ph="+353">Ireland</option>
@@ -179,10 +182,10 @@ body.isdone .wrap{display:none}body.isdone .done{display:block}
 
 <script>
 const PLANS=[
- {id:'start',nm:'Start',m:99,users:'1–3',ds:{en:'Up to 3 users',de:'Bis 3 Nutzer',es:'Hasta 3 usuarios',pl:'Do 3 użytkowników'}},
- {id:'pro',nm:'Pro',m:249,users:'4–8',pop:1,ds:{en:'4–8 users',de:'4–8 Nutzer',es:'4–8 usuarios',pl:'4–8 użytkowników'}},
- {id:'business',nm:'Business',m:549,users:'9–18',ds:{en:'9–18 users, several warehouses',de:'9–18 Nutzer, mehrere Lager',es:'9–18 usuarios, varios almacenes',pl:'9–18 użytkowników, kilka magazynów'}},
- {id:'ent',nm:'Enterprise',m:0,users:'19+',ds:{en:'19+ users, SSO, onboarding',de:'19+ Nutzer, SSO, Onboarding',es:'19+ usuarios, SSO, onboarding',pl:'19+ użytkowników, SSO, wdrożenie'}}];
+ {id:'start',nm:'Start',m:99,users:'1–3',ds:{en:'Up to 3 users',de:'Bis 3 Nutzer',es:'Hasta 3 usuarios',pl:'Do 3 użytkowników',fr:'Jusqu’à 3 utilisateurs',pt:'Até 3 utilizadores',it:'Fino a 3 utenti'}},
+ {id:'pro',nm:'Pro',m:249,users:'4–8',pop:1,ds:{en:'4–8 users',de:'4–8 Nutzer',es:'4–8 usuarios',pl:'4–8 użytkowników',fr:'4–8 utilisateurs',pt:'4–8 utilizadores',it:'4–8 utenti'}},
+ {id:'business',nm:'Business',m:549,users:'9–18',ds:{en:'9–18 users, several warehouses',de:'9–18 Nutzer, mehrere Lager',es:'9–18 usuarios, varios almacenes',pl:'9–18 użytkowników, kilka magazynów',fr:'9–18 utilisateurs, plusieurs entrepôts',pt:'9–18 utilizadores, vários armazéns',it:'9–18 utenti, più magazzini'}},
+ {id:'ent',nm:'Enterprise',m:0,users:'19+',ds:{en:'19+ users, SSO, onboarding',de:'19+ Nutzer, SSO, Onboarding',es:'19+ usuarios, SSO, onboarding',pl:'19+ użytkowników, SSO, wdrożenie',fr:'19+ utilisateurs, SSO, mise en place',pt:'19+ utilizadores, SSO, implementação',it:'19+ utenti, SSO, avvio'}}];
 const T={
  en:{have:'Already have an account?',login:'Live demo →',h1:'Get early access.<br><em>Be first on Rigvo.</em>',lead:'We’re onboarding the first rental companies now. Leave your details — we’ll set up your workspace, import your stock for free and show you around.',s_company:'Your company',co:'Company name',ctry:'Country',city:'City',vat:'VAT ID',opt:'(optional)',vathint:'EU business with VAT ID — invoice without VAT (reverse charge)',ph:'Phone',s_access:'Your access',nm:'Your name',em:'Work email',pw:'Password (min. 8 characters)',show:'Show',hide:'Hide',req:'Required',emhint:'Enter a valid email',pwhint:'At least 8 characters',note:'<b>💳 Nothing to pay now.</b> Early-access companies get personal onboarding and free data import. When we open, every plan starts with a 14-day free trial — no card needed.',agree:'I agree that Rigvo may contact me about early access, and accept the <a href="terms.html">Terms</a> and <a href="privacy.html">Privacy Policy</a>.',small:'We reply within one business day · hello@rigvo.app',s_plan:'Your plan',monthly:'Monthly',yearly:'Yearly',popular:'Most popular',mo:'/month',custom:'Custom',byear:'billed yearly',s_inc:'Every plan includes',t1:'Servers in the EU',t2:'GDPR · DPA included',
   sum_plan:'Plan',sum_bill:'Billing',sum_users:'Users',sum_after:'Price when we open',sum_vat:'VAT',sum_trial:'Free trial',vat_rc:'reverse charge (0%)',vat_add:'added per country',year_total:'per year',
@@ -207,14 +210,32 @@ const T={
   cta:p=>'Poproś o wczesny dostęp →',cta_ent:'Poproś o indywidualny plan →',ent_note:'Wyślemy Ci plan e-mailem w ciągu jednego dnia roboczego.',
   inc:['Oferty z akceptacją online i śledzeniem','Magazyn, dostępność i kompletacja z QR','Grafik, wynagrodzenia i oceny ekipy','Zysk z każdego wydarzenia, LTV i pełne statystyki','Księgowość: Lexware Office, Xero, Holded, Fakturownia, DATEV','Aplikacja mobilna dla ekipy i magazynu','Darmowy import danych z Twoich arkuszy'],
   d_h:'Jesteś na liście',d_p:(c,d)=>'Dziękujemy! Skontaktujemy się z '+c+' w ciągu jednego dnia roboczego.',d1:'Zaimportuj sprzęt z Excela — dopasujemy kategorie i stawki',d2:'Zaproś zespół — ekipa i freelancerzy za darmo',d3:'Wyślij pierwszą ofertę i zobacz, kiedy klient ją otworzy',d_btn:'Zobacz demo na żywo →',d_ent:'Dziękujemy! Skontaktujemy się w ciągu jednego dnia roboczego.',
-  bill_m:'Miesięcznie',bill_y:'Rocznie'}};
+  bill_m:'Miesięcznie',bill_y:'Rocznie'},
+ fr:{have:'Déjà un compte ?',login:'Démo →',h1:'Accès anticipé.<br><em>Soyez parmi les premiers.</em>',lead:'Nous accueillons dès maintenant les premières sociétés de location. Laissez vos coordonnées — nous préparons votre espace, importons votre stock gratuitement et vous accompagnons.',s_company:'Votre entreprise',co:'Nom de l’entreprise',ctry:'Pays',city:'Ville',vat:'N° de TVA',opt:'(facultatif)',vathint:'Entreprise UE avec n° de TVA — facture sans TVA (autoliquidation)',ph:'Téléphone',s_access:'Votre accès',nm:'Votre nom',em:'E-mail professionnel',pw:'Mot de passe (8 caractères min.)',show:'Afficher',hide:'Masquer',req:'Obligatoire',emhint:'Saisissez un e-mail valide',pwhint:'Au moins 8 caractères',note:'<b>💳 Rien à payer maintenant.</b> Les entreprises en accès anticipé bénéficient d’une mise en place personnalisée et d’un import de données gratuit. Au lancement, chaque formule commence par 14 jours gratuits — sans carte.',agree:'J’accepte que Rigvo me contacte au sujet de l’accès anticipé et j’accepte les <a href="terms.html">Conditions</a> et la <a href="privacy.html">Politique de confidentialité</a>.',small:'Réponse sous un jour ouvré · hello@rigvo.app',s_plan:'Votre formule',monthly:'Mensuel',yearly:'Annuel',popular:'Le plus choisi',mo:'/mois',custom:'Sur mesure',byear:'facturé annuellement',s_inc:'Chaque formule inclut',t1:'Serveurs dans l’UE',t2:'RGPD · DPA inclus',
+  sum_plan:'Formule',sum_bill:'Facturation',sum_users:'Utilisateurs',sum_after:'Prix au lancement',sum_vat:'TVA',sum_trial:'Essai gratuit',vat_rc:'autoliquidation (0 %)',vat_add:'selon le pays',year_total:'par an',
+  cta:p=>'Demander l’accès anticipé →',cta_ent:'Demander une offre sur mesure →',ent_note:'Nous vous envoyons une offre par e-mail sous un jour ouvré.',
+  inc:['Devis avec validation en ligne et suivi','Entrepôt, disponibilités et préparation par QR','Planning des équipes, paie et évaluations','Rentabilité de chaque événement, LTV et statistiques complètes','Comptabilité : Lexware Office, Xero, Holded, Fakturownia, DATEV','Application mobile pour techniciens et entrepôt','Import gratuit de vos tableurs'],
+  d_h:'Vous êtes sur la liste',d_p:(c,d)=>'Merci ! Nous contacterons '+c+' sous un jour ouvré.',d1:'Importez votre stock depuis Excel — catégories et tarifs reconnus',d2:'Invitez votre équipe — techniciens et freelances gratuits',d3:'Envoyez votre premier devis et voyez quand le client l’ouvre',d_btn:'Explorer la démo →',d_ent:'Merci ! Nous vous contactons sous un jour ouvré.',
+  bill_m:'Mensuel',bill_y:'Annuel'},
+ pt:{have:'Já tem conta?',login:'Demo →',h1:'Acesso antecipado.<br><em>Seja dos primeiros.</em>',lead:'Estamos a receber as primeiras empresas de aluguer. Deixe os seus dados — preparamos o seu espaço, importamos o seu stock gratuitamente e mostramos tudo.',s_company:'A sua empresa',co:'Nome da empresa',ctry:'País',city:'Cidade',vat:'N.º de IVA',opt:'(opcional)',vathint:'Empresa da UE com n.º de IVA — fatura sem IVA (autoliquidação)',ph:'Telefone',s_access:'O seu acesso',nm:'O seu nome',em:'E-mail profissional',pw:'Palavra-passe (mín. 8 caracteres)',show:'Mostrar',hide:'Ocultar',req:'Obrigatório',emhint:'Introduza um e-mail válido',pwhint:'Pelo menos 8 caracteres',note:'<b>💳 Nada a pagar agora.</b> As empresas com acesso antecipado têm implementação personalizada e importação de dados gratuita. No lançamento, cada plano começa com 14 dias grátis — sem cartão.',agree:'Aceito que a Rigvo me contacte sobre o acesso antecipado e aceito os <a href="terms.html">Termos</a> e a <a href="privacy.html">Política de privacidade</a>.',small:'Respondemos em um dia útil · hello@rigvo.app',s_plan:'O seu plano',monthly:'Mensal',yearly:'Anual',popular:'Mais popular',mo:'/mês',custom:'À medida',byear:'faturado anualmente',s_inc:'Todos os planos incluem',t1:'Servidores na UE',t2:'RGPD · DPA incluído',
+  sum_plan:'Plano',sum_bill:'Faturação',sum_users:'Utilizadores',sum_after:'Preço no lançamento',sum_vat:'IVA',sum_trial:'Período gratuito',vat_rc:'autoliquidação (0%)',vat_add:'conforme o país',year_total:'por ano',
+  cta:p=>'Pedir acesso antecipado →',cta_ent:'Pedir plano à medida →',ent_note:'Enviamos-lhe um plano por e-mail em um dia útil.',
+  inc:['Orçamentos com aprovação online e rastreio','Armazém, disponibilidade e preparação por QR','Escala da equipa, salários e avaliações','Lucro de cada evento, LTV e estatísticas completas','Contabilidade: Lexware Office, Xero, Holded, Fakturownia, DATEV','App móvel para técnicos e armazém','Importação gratuita das suas folhas de cálculo'],
+  d_h:'Está na lista',d_p:(c,d)=>'Obrigado! Vamos contactar '+c+' em um dia útil.',d1:'Importe o stock do Excel — reconhecemos categorias e preços',d2:'Convide a equipa — técnicos e freelancers são grátis',d3:'Envie o primeiro orçamento e veja quando o cliente o abre',d_btn:'Explorar a demo →',d_ent:'Obrigado! Entraremos em contacto em um dia útil.',
+  bill_m:'Mensal',bill_y:'Anual'},
+ it:{have:'Hai già un account?',login:'Demo →',h1:'Accesso anticipato.<br><em>Tra i primi su Rigvo.</em>',lead:'Stiamo accogliendo le prime aziende di noleggio. Lascia i tuoi dati: prepariamo il tuo spazio, importiamo gratis il tuo magazzino e ti mostriamo tutto.',s_company:'La tua azienda',co:'Ragione sociale',ctry:'Paese',city:'Città',vat:'Partita IVA',opt:'(facoltativo)',vathint:'Azienda UE con partita IVA — fattura senza IVA (reverse charge)',ph:'Telefono',s_access:'Il tuo accesso',nm:'Il tuo nome',em:'E-mail di lavoro',pw:'Password (min. 8 caratteri)',show:'Mostra',hide:'Nascondi',req:'Obbligatorio',emhint:'Inserisci un’e-mail valida',pwhint:'Almeno 8 caratteri',note:'<b>💳 Nulla da pagare ora.</b> Le aziende con accesso anticipato hanno avvio personalizzato e importazione dati gratuita. Al lancio ogni piano parte con 14 giorni gratis — senza carta.',agree:'Accetto che Rigvo mi contatti per l’accesso anticipato e accetto i <a href="terms.html">Termini</a> e l’<a href="privacy.html">Informativa privacy</a>.',small:'Rispondiamo entro un giorno lavorativo · hello@rigvo.app',s_plan:'Il tuo piano',monthly:'Mensile',yearly:'Annuale',popular:'Il più scelto',mo:'/mese',custom:'Su misura',byear:'fatturato annualmente',s_inc:'Ogni piano include',t1:'Server nell’UE',t2:'GDPR · DPA incluso',
+  sum_plan:'Piano',sum_bill:'Fatturazione',sum_users:'Utenti',sum_after:'Prezzo al lancio',sum_vat:'IVA',sum_trial:'Prova gratuita',vat_rc:'reverse charge (0%)',vat_add:'secondo il paese',year_total:'all’anno',
+  cta:p=>'Richiedi l’accesso anticipato →',cta_ent:'Richiedi un piano su misura →',ent_note:'Ti inviamo un piano via e-mail entro un giorno lavorativo.',
+  inc:['Preventivi con approvazione online e tracciamento','Magazzino, disponibilità e preparazione con QR','Turni dei tecnici, compensi e valutazioni','Utile di ogni evento, LTV e statistiche complete','Contabilità: Lexware Office, Xero, Holded, Fakturownia, DATEV','App mobile per tecnici e magazzino','Importazione gratuita dai tuoi fogli di calcolo'],
+  d_h:'Sei in lista',d_p:(c,d)=>'Grazie! Contatteremo '+c+' entro un giorno lavorativo.',d1:'Importa il magazzino da Excel — riconosciamo categorie e prezzi',d2:'Invita il team — tecnici e freelance sono gratis',d3:'Invia il primo preventivo e scopri quando il cliente lo apre',d_btn:'Esplora la demo →',d_ent:'Grazie! Ti contatteremo entro un giorno lavorativo.',
+  bill_m:'Mensile',bill_y:'Annuale'}};
 const q=new URLSearchParams(location.search);
 const st={lang:(q.get('lang')||'').toLowerCase(),plan:q.get('plan')||'pro',bill:q.get('bill')==='y'?'y':'m',showPw:false};
-if(!T[st.lang])st.lang='en';
+if(!T[st.lang]){try{const sl=localStorage.getItem('rigvo_lang');st.lang=T[sl]?sl:'en'}catch(e){st.lang='en'}}
 if(!PLANS.some(p=>p.id===st.plan))st.plan='pro';
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const L=()=>T[st.lang];
-const locale=()=>({en:'en-IE',de:'de-DE',es:'es-ES',pl:'pl-PL'})[st.lang];
+const locale=()=>({en:'en-IE',de:'de-DE',es:'es-ES',pl:'pl-PL',fr:'fr-FR',pt:'pt-PT',it:'it-IT'})[st.lang];
 const eur=n=>new Intl.NumberFormat(locale(),{style:'currency',currency:'EUR',currencyDisplay:'narrowSymbol',maximumFractionDigits:0}).format(n);
 const price=p=>st.bill==='y'?Math.round(p.m*0.8):p.m;
 const trialEnd=()=>{const d=new Date();d.setDate(d.getDate()+14);return d.toLocaleDateString(locale(),{day:'numeric',month:'long',year:'numeric'})};
@@ -222,7 +243,7 @@ function renderPlans(){const l=L();
  $('#plans').innerHTML=PLANS.map(p=>`<button type="button" class="plan ${st.plan===p.id?'on':''}" data-plan="${p.id}" aria-pressed="${st.plan===p.id}"><span class="dot"></span><span style="min-width:0"><span class="nm">${p.nm}${p.pop?`<span class="tag">${l.popular}</span>`:''}</span><span class="ds">${p.ds[st.lang]}</span></span><span class="pr">${p.m?`${st.bill==='y'?`<s>${eur(p.m)}</s>`:''}<b>${eur(price(p))}</b><small>${l.mo}</small>`:`<b>${l.custom}</b>`}</span></button>`).join('');
  const p=PLANS.find(x=>x.id===st.plan);const ctry=$('#ctry').value,vat=$('#vat').value.trim();
  const rc=vat.length>4&&ctry!=='XX'&&ctry!=='GB';
- $('#sum').innerHTML=p.m?`<div><span>${l.sum_plan}</span><b>${p.nm}</b></div><div><span>${l.sum_users}</span><b>${p.users}</b></div><div><span>${l.sum_bill}</span><b>${st.bill==='y'?l.bill_y+' · −20%':l.bill_m}</b></div><div><span>${l.sum_trial}</span><b>${({en:'14 days',de:'14 Tage',es:'14 días',pl:'14 dni'})[st.lang]}</b></div><div><span>${l.sum_vat}</span><b>${rc?l.vat_rc:l.vat_add}</b></div><div class="tot"><span>${l.sum_after}</span><b>${eur(price(p))} ${l.mo}${st.bill==='y'?`<br><small style="font-weight:500;color:var(--mut2)">${eur(price(p)*12)} ${l.year_total}</small>`:''}</b></div>`
+ $('#sum').innerHTML=p.m?`<div><span>${l.sum_plan}</span><b>${p.nm}</b></div><div><span>${l.sum_users}</span><b>${p.users}</b></div><div><span>${l.sum_bill}</span><b>${st.bill==='y'?l.bill_y+' · −20%':l.bill_m}</b></div><div><span>${l.sum_trial}</span><b>${({en:'14 days',de:'14 Tage',es:'14 días',pl:'14 dni',fr:'14 jours',pt:'14 dias',it:'14 giorni'})[st.lang]}</b></div><div><span>${l.sum_vat}</span><b>${rc?l.vat_rc:l.vat_add}</b></div><div class="tot"><span>${l.sum_after}</span><b>${eur(price(p))} ${l.mo}${st.bill==='y'?`<br><small style="font-weight:500;color:var(--mut2)">${eur(price(p)*12)} ${l.year_total}</small>`:''}</b></div>`
   :`<div style="display:block;color:var(--mut)">${l.ent_note}</div>`;
  $('#cta').textContent=p.m?l.cta(p.nm):l.cta_ent;
  $$('.toggle button').forEach(b=>b.classList.toggle('on',b.dataset.bill===st.bill));
@@ -235,12 +256,12 @@ function renderLang(){const l=L();document.documentElement.lang=st.lang;$('#lang
  renderPlans()}
 function syncCountry(){const o=$('#ctry').selectedOptions[0];$('#vat').placeholder=o.dataset.vat?o.dataset.vat+'123456789':'—';$('#ph').placeholder=o.dataset.ph+' …';renderPlans()}
 // country default by language
-({de:'DE',es:'ES',pl:'PL'})[st.lang]&&($('#ctry').value=({de:'DE',es:'ES',pl:'PL'})[st.lang]);
+({de:'DE',es:'ES',pl:'PL',fr:'FR',pt:'PT',it:'IT'})[st.lang]&&($('#ctry').value=({de:'DE',es:'ES',pl:'PL',fr:'FR',pt:'PT',it:'IT'})[st.lang]);
 document.addEventListener('click',e=>{const b=e.target.closest('[data-plan]');if(b){st.plan=b.dataset.plan;renderPlans();return}
  const t=e.target.closest('[data-bill]');if(t){st.bill=t.dataset.bill;renderPlans();return}
 
 });
-$('#lang').addEventListener('change',e=>{st.lang=e.target.value;renderLang()});
+$('#lang').addEventListener('change',e=>{st.lang=e.target.value;try{st.lang==='en'?localStorage.removeItem('rigvo_lang'):localStorage.setItem('rigvo_lang',st.lang)}catch(x){}if(window.rigvoSetLang)rigvoSetLang(st.lang);renderLang()});
 $('#ctry').addEventListener('change',syncCountry);
 $('#vat').addEventListener('input',renderPlans);
 function mark(id,bad,hintKey){const f=$('#'+id).closest('.f');f.classList.toggle('bad',bad);const h=f.querySelector('.hint[data-t="'+hintKey+'"]');if(h)h.hidden=!bad;return bad}
@@ -261,6 +282,7 @@ $('#form').addEventListener('submit',async e=>{e.preventDefault();if(!validate()
  b.disabled=false;renderPlans()});
 renderLang();syncCountry();
 </script>
+<script src="i18n/site.js"></script>
 <script src="consent.js"></script>
 <script src="lead.js"></script>
 </body>
