@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Log in — Rigvo</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="brand.css">
+<style>
+:root{--bg:#0E0E0E;--card:#171716;--card2:#1E1E1C;--line:#2C2C29;--tx:#FFFFFF;--mut:#A3A39C;--a:#FFD400;--err:#FF6B5B}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:var(--bg);color:var(--tx);font-family:Geist,system-ui,sans-serif;font-size:16px;display:flex;flex-direction:column}
+header{padding:20px 24px}
+main{flex:1;display:flex;align-items:center;justify-content:center;padding:16px 16px 64px}
+.card{width:100%;max-width:420px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:32px}
+h1{margin:0 0 6px;font-size:30px;letter-spacing:-.03em}
+.sub{margin:0 0 24px;color:var(--mut)}
+label{display:block;font-size:13px;font-weight:600;color:var(--mut);margin:0 0 7px}
+input{width:100%;background:var(--card2);border:1px solid var(--line);color:var(--tx);border-radius:11px;padding:13px 14px;font:inherit;font-size:16px;min-height:50px;outline:none;margin-bottom:16px}
+input:focus{border-color:var(--a);box-shadow:0 0 0 3px rgba(255,212,0,.12)}
+.row{display:flex;justify-content:space-between;align-items:center;margin:-6px 0 18px;font-size:14px}
+.row a{color:var(--mut)}
+button{width:100%;border:0;border-radius:12px;background:var(--a);color:#0E0E0E;font:inherit;font-weight:700;font-size:17px;padding:15px;min-height:52px;cursor:pointer}
+.msg{display:none;margin-top:18px;padding:14px 16px;border-radius:12px;background:rgba(255,212,0,.08);border:1px solid rgba(255,212,0,.35);font-size:15px;line-height:1.5}
+.msg a{color:var(--a);font-weight:600}
+.foot{margin-top:22px;text-align:center;color:var(--mut);font-size:14px}.foot a{color:var(--tx);font-weight:600}
+</style>
+</head>
+<body>
+<header><a href="index.html" aria-label="Rigvo — home" style="text-decoration:none;color:#fff"><span class="rv-logo" style="font-size:30px">r<span class="rv-i">ı<span class="rv-dot"></span></span>gvo</span></a></header>
+<main>
+<form class="card" id="f" novalidate>
+<h1>Log in</h1>
+<p class="sub">to your Rigvo workspace</p>
+<label for="em">Work email</label>
+<input id="em" type="email" inputmode="email" autocomplete="email" required>
+<label for="pw">Password</label>
+<input id="pw" type="password" autocomplete="current-password" required>
+<div class="row"><span></span><a href="mailto:hello@rigvo.app?subject=Rigvo%20password">Forgot password?</a></div>
+<button type="submit">Log in</button>
+<div class="msg" id="msg" role="status">Rigvo is in early access — workspaces are opened personally. <a href="signup.html">Request access</a> or <a href="demo.html">open the live demo</a>.</div>
+<p class="foot">No account yet? <a href="signup.html">Get early access</a></p>
+</form>
+</main>
+<script>
+document.getElementById('f').addEventListener('submit',e=>{e.preventDefault();document.getElementById('msg').style.display='block'});
+</script>
+</body>
+</html>
