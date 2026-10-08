@@ -83,7 +83,7 @@ details[open]>summary::after{transform:translateY(2px) rotate(225deg)}
 <p style="margin: 0 0 32px; font-size: 19px; line-height: 1.5; color: #C9C9C4; max-width: 540px">Leads, quotes, stock, picking, crew, transport, payments and the real profit of every event — in one place. Built inside a working rental company, not in a meeting room.</p>
 <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 24px">
 <a href="signup.html" style="background: #FFD400; color: #0E0E0E; text-decoration: none; font-weight: 600; font-size: 17px; padding: 16px 24px; border-radius: 10px">Get early access</a>
-<a href="#demo" data-modal="demo" style="color: #FFFFFF; text-decoration: none; font-weight: 600; font-size: 17px; padding: 15px 23px; border-radius: 10px; border: 1px solid #3A3A36">Book a demo</a>
+<a href="demo.html" data-gate style="color: #FFFFFF; text-decoration: none; font-weight: 600; font-size: 17px; padding: 15px 23px; border-radius: 10px; border: 1px solid #3A3A36">Try live demo</a>
 </div>
 <p style="margin: 0; font-size: 14px; color: #9A9A94">Now onboarding the first rental companies · English, Deutsch, Español, Polski</p>
 </div>
@@ -271,7 +271,7 @@ details[open]>summary::after{transform:translateY(2px) rotate(225deg)}
 <h2 style="margin: 0; font-size: 46px; line-height: 1.05; letter-spacing: -0.03em; font-weight: 800; max-width: 680px">Your next event, planned in one place.</h2>
 <div style="display: flex; flex-wrap: wrap; gap: 12px">
 <a href="signup.html" style="background: #FFD400; color: #0E0E0E; text-decoration: none; font-weight: 600; font-size: 17px; padding: 16px 24px; border-radius: 10px">Get early access</a>
-<a href="#demo" data-modal="demo" style="color: #FFFFFF; text-decoration: none; font-weight: 600; font-size: 17px; padding: 15px 23px; border-radius: 10px; border: 1px solid #3A3A36">Book a demo</a>
+<a href="demo.html" data-gate style="color: #FFFFFF; text-decoration: none; font-weight: 600; font-size: 17px; padding: 15px 23px; border-radius: 10px; border: 1px solid #3A3A36">Try live demo</a>
 </div>
 </div>
 </section>
@@ -293,23 +293,8 @@ details[open]>summary::after{transform:translateY(2px) rotate(225deg)}
 
 </div>
 
-<div id="modal" role="dialog" aria-modal="true" aria-labelledby="mtitle" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:50;align-items:center;justify-content:center;padding:16px">
-<form id="mform" style="background:#fff;border-radius:16px;padding:32px;width:100%;max-width:440px;display:flex;flex-direction:column;gap:14px;font-family:Geist,system-ui,sans-serif">
-<div style="display:flex;justify-content:space-between;align-items:center"><h3 id="mtitle" style="margin:0;font-size:24px;letter-spacing:-.02em">Book a demo</h3><button type="button" id="mclose" aria-label="Close" style="font:inherit;font-size:24px;background:none;border:0;cursor:pointer;width:44px;height:44px">×</button></div>
-<p id="msub" style="margin:0;color:#4A4A45">A 30-minute call with a walkthrough on your own stock list.</p>
-<label style="display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:600">Company<input required name="c" style="font:inherit;font-weight:400;padding:12px;border:1px solid #CFCFC8;border-radius:8px"></label>
-<label style="display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:600">Work email<input required type="email" name="e" style="font:inherit;font-weight:400;padding:12px;border:1px solid #CFCFC8;border-radius:8px"></label>
-<label style="display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:600">Country<select name="k" style="font:inherit;font-weight:400;padding:12px;border:1px solid #CFCFC8;border-radius:8px"><option>Germany</option><option>Poland</option><option>Spain</option><option>United Kingdom</option><option>Other</option></select></label>
-<button type="submit" style="font:inherit;font-weight:600;font-size:16px;background:#FFD400;color:#0E0E0E;border:0;border-radius:10px;padding:14px;cursor:pointer">Create workspace</button>
-<p id="mok" role="status" style="display:none;margin:0;padding:12px;background:#F5F5F2;border-radius:8px">Thanks! We’ll reply within one business day.</p>
-</form></div>
+
 <script>
-const M=document.getElementById('modal'),T=document.getElementById('mtitle'),S=document.getElementById('msub'),B=document.querySelector('#mform button[type=submit]'),OK=document.getElementById('mok');
-document.querySelectorAll('[data-modal]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();const d=a.dataset.modal==='demo';T.textContent=d?'Book a demo':'Start your free trial';S.textContent=d?'A 30-minute call with a walkthrough on your own stock list.':'30 days, no card required.';B.textContent=d?'Request a demo':'Create workspace';OK.style.display='none';M.style.display='flex';M.animate([{opacity:0},{opacity:1}],{duration:180});M.firstElementChild.animate([{opacity:0,transform:'translateY(10px)'},{opacity:1,transform:'none'}],{duration:240,easing:'cubic-bezier(.2,.8,.2,1)'});M.querySelector('input').focus()}));
-document.getElementById('mclose').onclick=()=>M.style.display='none';
-M.addEventListener('click',e=>{if(e.target===M)M.style.display='none'});
-addEventListener('keydown',e=>{if(e.key==='Escape')M.style.display='none'});
-document.getElementById('mform').addEventListener('submit',async e=>{e.preventDefault();const f=new FormData(e.target);B.disabled=true;try{await sendLead('demo_call',{company:f.get('c'),email:f.get('e'),country:f.get('k'),consent_text:'Demo call request'});OK.style.display='block'}catch(x){OK.textContent='Could not send — please email hello@rigvo.app';OK.style.display='block'}B.disabled=false});
 document.querySelectorAll('a[href^="#"]:not([data-modal])').forEach(a=>a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'})}}));
 </script>
 <script>
