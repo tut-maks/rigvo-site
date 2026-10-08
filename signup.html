@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rigvo — Get early access</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="brand.css">
+<style>
+:root{--bg:#0E0E0E;--card:#171716;--card2:#1E1E1C;--line:#2C2C29;--line2:#3A3A36;--tx:#FFFFFF;--mut:#A3A39C;--mut2:#76766F;--a:#FFD400;--a2:#FFE35C;--asoft:rgba(255,212,0,.08);--ok:#3DDC84;--oksoft:rgba(61,220,132,.08);--okline:rgba(61,220,132,.35);--err:#FF6B5B}
+:root[data-theme="light"]{--bg:#F6F6F3;--card:#FFFFFF;--card2:#F3F3EF;--line:#E4E4DF;--line2:#D2D2CB;--tx:#111110;--mut:#5A5A54;--mut2:#85857E;--a:#FFD400;--a2:#F0C800;--asoft:#FFF7CC;--ok:#138A4C;--oksoft:#ECF8F1;--okline:#BFE6CF;--err:#C7372A}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--tx);font-family:Geist,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.top{max-width:1240px;margin:0 auto;padding:20px 24px;display:flex;align-items:center;gap:16px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;font-size:20px;letter-spacing:-.02em}
+.logo b{width:34px;height:34px;border-radius:9px;background:var(--a);color:#0E0E0E;display:grid;place-items:center;font-size:19px;font-weight:800}
+.sp{flex:1}
+.login{color:var(--mut);font-size:15px}.login a{color:var(--tx);font-weight:600;text-decoration:none}
+select.lang{background:transparent;color:var(--tx);border:1px solid var(--line2);border-radius:9px;padding:8px 10px;font:inherit;font-size:14px;min-height:40px}
+select.lang option{color:#111}
+.wrap{max-width:1240px;margin:0 auto;padding:12px 24px 64px;display:grid;grid-template-columns:minmax(0,1fr) 420px;gap:40px;align-items:start}
+h1{margin:20px 0 10px;font-size:52px;line-height:1.04;letter-spacing:-.035em;font-weight:800}
+h1 em{font-style:normal;color:var(--a)}
+.lead{margin:0 0 32px;color:var(--mut);font-size:18px;max-width:640px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:32px}
+.sec{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--a);margin:0 0 16px}
+.sec+.grid{margin-bottom:28px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px 16px}
+.f{display:flex;flex-direction:column;gap:7px;min-width:0}
+.f.full{grid-column:1/-1}
+.f label{font-size:13px;font-weight:600;color:var(--mut);letter-spacing:.02em}
+.f label i{font-style:normal;color:var(--mut2);font-weight:500}
+.f input,.f select{width:100%;background:var(--card2);border:1px solid var(--line);color:var(--tx);border-radius:11px;padding:13px 14px;font:inherit;font-size:16px;min-height:50px;outline:none;transition:border-color .15s,box-shadow .15s}
+.f select option{color:#111}
+.f input::placeholder{color:var(--mut2)}
+.f input:focus,.f select:focus{border-color:var(--a);box-shadow:0 0 0 3px var(--asoft)}
+.f.bad input,.f.bad select{border-color:var(--err)}
+.f .hint{font-size:13px;color:var(--mut2)}
+.f.bad .hint{color:var(--err)}
+.pw{position:relative}.pw button{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:none;border:0;color:var(--mut);font:inherit;font-size:13px;font-weight:600;cursor:pointer;padding:8px;min-height:40px}
+.meter{display:flex;gap:4px;margin-top:2px}.meter span{flex:1;height:4px;border-radius:4px;background:var(--line)}
+.meter[data-s="1"] span:nth-child(-n+1){background:var(--err)}.meter[data-s="2"] span:nth-child(-n+2){background:#F5A524}.meter[data-s="3"] span:nth-child(-n+3){background:var(--ok)}.meter[data-s="4"] span{background:var(--ok)}
+.note{background:var(--oksoft);border:1px solid var(--okline);color:var(--tx);border-radius:12px;padding:14px 16px;font-size:14.5px;margin:4px 0 20px}
+.note b{color:var(--ok)}
+.chk{display:flex;gap:12px;align-items:flex-start;font-size:15px;color:var(--mut);margin-bottom:20px;cursor:pointer}
+.chk input{width:22px;height:22px;margin:1px 0 0;accent-color:var(--a);flex:none}
+.chk a{color:var(--tx);font-weight:600}
+.chk.bad{color:var(--err)}
+.cta{width:100%;border:0;border-radius:12px;background:var(--a);color:#0E0E0E;font:inherit;font-weight:700;font-size:18px;padding:17px;cursor:pointer;min-height:56px;transition:background .15s,transform .05s}
+.cta:hover{background:var(--a2)}.cta:active{transform:translateY(1px)}
+.cta[disabled]{opacity:.6;cursor:progress}
+.small{font-size:13px;color:var(--mut2);text-align:center;margin-top:12px}
+/* plan panel */
+.side{position:sticky;top:20px;display:flex;flex-direction:column;gap:16px}
+.toggle{display:grid;grid-template-columns:1fr 1fr;background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:4px;margin-bottom:16px}
+.toggle button{border:0;background:none;color:var(--mut);font:inherit;font-weight:600;font-size:15px;padding:10px;border-radius:9px;cursor:pointer;min-height:44px}
+.toggle button.on{background:var(--a);color:#0E0E0E}
+.toggle .save{font-size:12px;font-weight:700;margin-left:4px;opacity:.85}
+.plan{display:flex;align-items:center;gap:14px;border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:10px;cursor:pointer;background:var(--card);transition:border-color .15s,background .15s;width:100%;text-align:left;color:inherit;font:inherit}
+.plan:hover{border-color:var(--line2)}
+.plan.on{border:2px solid var(--a);background:var(--asoft);padding:15px}
+.plan .dot{width:22px;height:22px;border-radius:50%;border:2px solid var(--line2);flex:none;display:grid;place-items:center}
+.plan.on .dot{border-color:var(--a)}.plan.on .dot:after{content:"";width:10px;height:10px;border-radius:50%;background:var(--a)}
+.plan .nm{font-weight:700;font-size:17px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.plan .tag{font-size:11.5px;font-weight:700;background:var(--a);color:#0E0E0E;border-radius:999px;padding:2px 8px}
+.plan .ds{font-size:13.5px;color:var(--mut)}
+.plan .pr{margin-left:auto;text-align:right;white-space:nowrap}
+.plan .pr b{font-size:20px;letter-spacing:-.02em}
+.plan .pr s{display:block;font-size:12.5px;color:var(--mut2)}
+.plan .pr small{display:block;font-size:12.5px;color:var(--mut2)}
+.sum{border-top:1px solid var(--line);margin-top:8px;padding-top:16px;display:grid;gap:9px;font-size:15px}
+.sum div{display:flex;justify-content:space-between;gap:12px}.sum span{color:var(--mut)}.sum b{text-align:right}
+.sum .tot{font-size:17px;padding-top:6px}
+.inc{margin:0;padding:0;list-style:none;display:grid;gap:8px;font-size:14.5px;color:var(--mut)}
+.inc li{display:flex;gap:10px}.inc li:before{content:"✓";color:var(--a);font-weight:800}
+.trust{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:13px;color:var(--mut2)}
+/* done */
+.done{display:none;max-width:640px;margin:40px auto;text-align:center;padding:0 24px}
+.done .ok{width:72px;height:72px;border-radius:50%;background:var(--a);color:#0E0E0E;display:grid;place-items:center;margin:0 auto 20px;font-size:36px;font-weight:800}
+.done h2{font-size:40px;letter-spacing:-.03em;margin:0 0 10px;line-height:1.1}
+.done p{color:var(--mut);font-size:17px;margin:0 0 28px}
+.steps{text-align:left;display:grid;gap:10px;margin-bottom:28px}
+.steps div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;gap:14px;align-items:center}
+.steps i{font-style:normal;width:28px;height:28px;border-radius:50%;background:var(--card2);border:1px solid var(--line2);display:grid;place-items:center;font-weight:700;font-size:14px;flex:none}
+.done .cta{display:inline-block;width:auto;padding:17px 32px;text-decoration:none}
+body.isdone .wrap{display:none}body.isdone .done{display:block}
+@media (max-width:980px){.wrap{grid-template-columns:1fr;gap:24px}.wrap .intro,.wrap form,.wrap .side{grid-column:1!important;grid-row:auto!important}#form{order:1}.side{position:static;order:-1}.intro{order:-2}}
+@media (max-width:620px){
+ .top{padding:14px 16px}.login .tx{display:none}
+ .wrap{padding:4px 16px 40px}
+ h1{font-size:36px;margin-top:8px}.lead{font-size:16px;margin-bottom:8px}
+ .card{padding:20px;border-radius:16px}
+ .grid{grid-template-columns:1fr}
+ .plan .ds{font-size:13px}
+ .done h2{font-size:30px}
+}
+</style>
+</head>
+<body>
+<header class="top">
+ <a class="logo" href="index.html" aria-label="Rigvo — home"><span class="rv-logo" style="font-size:30px">r<span class="rv-i">ı<span class="rv-dot"></span></span>gvo</span></a>
+ <span class="sp"></span>
+ <span class="login"><a href="demo.html" data-t="login">Live demo →</a></span>
+ <select class="lang" id="lang" aria-label="Language">
+  <option value="en">EN</option><option value="de">DE</option><option value="es">ES</option><option value="pl">PL</option><option value="uk">UA</option>
+ </select>
+</header>
+
+<main class="wrap" id="wrap">
+ <div style="display:contents">
+ <section class="intro" style="grid-column:1">
+  <h1 data-t="h1" data-html>Pick a plan.<br><em>Get started today.</em></h1>
+  <p class="lead" data-t="lead">14 days free, then your chosen plan continues. No credit card needed, cancel anytime.</p>
+ </section>
+
+ <form class="card" id="form" novalidate style="grid-column:1">
+  <p class="sec" data-t="s_company">Your company</p>
+  <div class="grid">
+   <div class="f full"><label for="co"><span data-t="co">Company name</span> *</label><input id="co" autocomplete="organization" required><span class="hint" data-t="req" hidden>Required</span></div>
+   <div class="f"><label for="ctry"><span data-t="ctry">Country</span> *</label>
+    <select id="ctry" required>
+     <option value="DE" data-vat="DE" data-ph="+49">Deutschland</option>
+     <option value="AT" data-vat="ATU" data-ph="+43">Österreich</option>
+     <option value="ES" data-vat="ES" data-ph="+34">España</option>
+     <option value="PL" data-vat="PL" data-ph="+48">Polska</option>
+     <option value="NL" data-vat="NL" data-ph="+31">Nederland</option>
+     <option value="FR" data-vat="FR" data-ph="+33">France</option>
+     <option value="IT" data-vat="IT" data-ph="+39">Italia</option>
+     <option value="IE" data-vat="IE" data-ph="+353">Ireland</option>
+     <option value="GB" data-vat="GB" data-ph="+44">United Kingdom</option>
+     <option value="UA" data-vat="" data-ph="+380">Україна</option>
+     <option value="XX" data-vat="" data-ph="+">Other</option>
+    </select></div>
+   <div class="f"><label for="city" data-t="city">City</label><input id="city" autocomplete="address-level2"></div>
+   <div class="f"><label for="vat"><span data-t="vat">VAT ID</span> <i data-t="opt">(optional)</i></label><input id="vat" placeholder="DE123456789" autocapitalize="characters"><span class="hint" data-t="vathint">EU business with VAT ID — invoice without VAT (reverse charge)</span></div>
+   <div class="f"><label for="ph"><span data-t="ph">Phone</span> <i data-t="opt">(optional)</i></label><input id="ph" type="tel" inputmode="tel" autocomplete="tel" placeholder="+49 …"></div>
+  </div>
+
+  <p class="sec" data-t="s_access">Your access</p>
+  <div class="grid">
+   <div class="f"><label for="nm"><span data-t="nm">Your name</span> *</label><input id="nm" autocomplete="name" required><span class="hint" data-t="req" hidden>Required</span></div>
+   <div class="f"><label for="em"><span data-t="em">Work email</span> *</label><input id="em" type="email" inputmode="email" autocomplete="email" required><span class="hint" data-t="emhint" hidden>Enter a valid email</span></div>
+  </div>
+
+  <div class="note" data-t="note" data-html><b>💳 No payment details needed.</b> The trial is completely free — you enter nothing now. Only if you want to continue after the trial, you add a payment method in “Plan &amp; billing” and confirm the paid plan.</div>
+  <label class="chk" id="chkw"><input type="checkbox" id="agree"><span data-t="agree" data-html>I accept the <a href="#">Terms</a> and have read the <a href="#">Privacy Policy</a> and <a href="#">DPA</a>.</span></label>
+  <button class="cta" id="cta" type="submit">Start Pro free →</button>
+  <p class="small" data-t="small">Your data is stored in the EU · cancel anytime</p>
+ </form>
+ </div>
+
+ <aside class="side" style="grid-column:2;grid-row:1/span 2">
+  <div class="card" style="padding:24px">
+   <p class="sec" data-t="s_plan">Your plan</p>
+   <div class="toggle" role="tablist"><button type="button" data-bill="m" class="on" data-t="monthly">Monthly</button><button type="button" data-bill="y"><span data-t="yearly">Yearly</span><span class="save">−20%</span></button></div>
+   <div id="plans"></div>
+   <div class="sum" id="sum"></div>
+  </div>
+  <div class="card" style="padding:24px">
+   <p class="sec" data-t="s_inc">Every plan includes</p>
+   <ul class="inc" id="inc"></ul>
+  </div>
+  <div class="trust"><span>🇪🇺 <span data-t="t1">Servers in the EU</span></span><span>🔒 <span data-t="t2">GDPR · DPA included</span></span><span>🌍 EN · DE · ES · PL · UA</span></div>
+ </aside>
+</main>
+
+<section class="done" id="done">
+ <div class="ok">✓</div>
+ <h2 data-t="d_h">Your workspace is ready</h2>
+ <p id="d_p"></p>
+ <div class="steps">
+  <div><i>1</i><span data-t="d1">Import your stock from Excel — we map categories and rates</span></div>
+  <div><i>2</i><span data-t="d2">Invite your team — crew and freelancers are free</span></div>
+  <div><i>3</i><span data-t="d3">Send your first quote and see when the client opens it</span></div>
+ </div>
+ <a class="cta" href="demo.html" data-t="d_btn">Open my workspace →</a>
+</section>
+
+<script>
+const PLANS=[
+ {id:'start',nm:'Start',m:99,users:'1–3',ds:{en:'Up to 3 users',de:'Bis 3 Nutzer',es:'Hasta 3 usuarios',pl:'Do 3 użytkowników',uk:'До 3 користувачів'}},
+ {id:'pro',nm:'Pro',m:249,users:'4–8',pop:1,ds:{en:'4–8 users',de:'4–8 Nutzer',es:'4–8 usuarios',pl:'4–8 użytkowników',uk:'4–8 користувачів'}},
+ {id:'business',nm:'Business',m:549,users:'9–18',ds:{en:'9–18 users, several warehouses',de:'9–18 Nutzer, mehrere Lager',es:'9–18 usuarios, varios almacenes',pl:'9–18 użytkowników, kilka magazynów',uk:'9–18 користувачів, кілька складів'}},
+ {id:'ent',nm:'Enterprise',m:0,users:'19+',ds:{en:'19+ users, SSO, onboarding',de:'19+ Nutzer, SSO, Onboarding',es:'19+ usuarios, SSO, onboarding',pl:'19+ użytkowników, SSO, wdrożenie',uk:'19+ користувачів, SSO, впровадження'}}];
+const T={
+ en:{have:'Already have an account?',login:'Live demo →',h1:'Get early access.<br><em>Be first on Rigvo.</em>',lead:'We’re onboarding the first rental companies now. Leave your details — we’ll set up your workspace, import your stock for free and show you around.',s_company:'Your company',co:'Company name',ctry:'Country',city:'City',vat:'VAT ID',opt:'(optional)',vathint:'EU business with VAT ID — invoice without VAT (reverse charge)',ph:'Phone',s_access:'Your access',nm:'Your name',em:'Work email',pw:'Password (min. 8 characters)',show:'Show',hide:'Hide',req:'Required',emhint:'Enter a valid email',pwhint:'At least 8 characters',note:'<b>💳 Nothing to pay now.</b> Early-access companies get personal onboarding and free data import. When we open, every plan starts with a 14-day free trial — no card needed.',agree:'I agree that Rigvo may contact me about early access. <a href="privacy.html">Privacy Policy</a>.',small:'We reply within one business day · hello@rigvo.app',s_plan:'Your plan',monthly:'Monthly',yearly:'Yearly',popular:'Most popular',mo:'/month',custom:'Custom',byear:'billed yearly',s_inc:'Every plan includes',t1:'Servers in the EU',t2:'GDPR · DPA included',
+  sum_plan:'Plan',sum_bill:'Billing',sum_users:'Users',sum_after:'Price when we open',sum_vat:'VAT',sum_trial:'Free trial',vat_rc:'reverse charge (0%)',vat_add:'added per country',year_total:'per year',
+  cta:p=>'Request early access →',cta_ent:'Talk to sales →',ent_note:'We’ll call you within one business day and build a plan for your team.',
+  inc:['Quotes with online approval and tracking','Warehouse, availability and QR picking','Crew schedule, payroll and ratings','Profit of every event, LTV and full statistics','Accounting: Lexware Office, Xero, Holded, Fakturownia, DATEV','Mobile app for crew and warehouse','Free data import from your spreadsheets'],
+  d_h:'You’re on the list',d_p:(c,d)=>'Thanks! We’ll contact '+c+' within one business day.',d1:'Import your stock from Excel — we map categories and rates',d2:'Invite your team — crew and freelancers are free',d3:'Send your first quote and see when the client opens it',d_btn:'Explore the live demo →',d_ent:'Thanks! Our team will contact you within one business day.',
+  bill_m:'Monthly',bill_y:'Yearly'},
+ de:{have:'Schon ein Konto?',login:'Live-Demo →',h1:'Frühen Zugang sichern.<br><em>Als Erste auf Rigvo.</em>',lead:'Wir nehmen gerade die ersten Vermietfirmen auf. Hinterlasse deine Daten — wir richten deinen Arbeitsbereich ein, importieren deinen Bestand kostenlos und zeigen dir alles.',s_company:'Deine Firma',co:'Firmenname',ctry:'Land',city:'Stadt',vat:'USt-IdNr.',opt:'(optional)',vathint:'EU-Firma mit USt-IdNr. — Rechnung ohne MwSt. (Reverse Charge)',ph:'Telefon',s_access:'Dein Zugang',nm:'Dein Name',em:'Geschäftliche E-Mail',pw:'Passwort (min. 8 Zeichen)',show:'Zeigen',hide:'Verbergen',req:'Pflichtfeld',emhint:'Gültige E-Mail eingeben',pwhint:'Mindestens 8 Zeichen',note:'<b>💳 Jetzt nichts zu zahlen.</b> Firmen mit frühem Zugang bekommen persönliches Onboarding und kostenlosen Datenimport. Zum Start beginnt jedes Paket mit 14 Tagen gratis — ohne Karte.',agree:'Ich bin einverstanden, dass Rigvo mich zum frühen Zugang kontaktiert. <a href="privacy.html">Datenschutzerklärung</a>.',small:'Antwort innerhalb eines Werktags · hello@rigvo.app',s_plan:'Dein Paket',monthly:'Monatlich',yearly:'Jährlich',popular:'Beliebteste Wahl',mo:'/Monat',custom:'Individuell',byear:'jährlich abgerechnet',s_inc:'In jedem Paket',t1:'Server in der EU',t2:'DSGVO · AV-Vertrag inklusive',
+  sum_plan:'Paket',sum_bill:'Abrechnung',sum_users:'Nutzer',sum_after:'Preis zum Start',sum_vat:'MwSt.',sum_trial:'Gratis-Test',vat_rc:'Reverse Charge (0 %)',vat_add:'je nach Land zzgl.',year_total:'pro Jahr',
+  cta:p=>'Frühen Zugang anfragen →',cta_ent:'Vertrieb kontaktieren →',ent_note:'Wir rufen dich innerhalb eines Werktags an und erstellen ein Angebot für dein Team.',
+  inc:['Angebote mit Online-Freigabe und Tracking','Lager, Verfügbarkeit und QR-Kommissionierung','Einsatzplan, Gehälter und Bewertungen der Crew','Gewinn jedes Events, LTV und komplette Statistik','Buchhaltung: Lexware Office, Xero, Holded, Fakturownia, DATEV','Mobile App für Crew und Lager','Kostenloser Datenimport aus deinen Tabellen'],
+  d_h:'Du bist auf der Liste',d_p:(c,d)=>'Danke! Wir melden uns bei '+c+' innerhalb eines Werktags.',d1:'Bestand aus Excel importieren — wir ordnen Kategorien und Preise zu',d2:'Team einladen — Crew und Freelancer sind kostenlos',d3:'Erstes Angebot senden und sehen, wann der Kunde es öffnet',d_btn:'Live-Demo ansehen →',d_ent:'Danke! Unser Team meldet sich innerhalb eines Werktags.',
+  bill_m:'Monatlich',bill_y:'Jährlich'},
+ es:{have:'¿Ya tienes cuenta?',login:'Demo en vivo →',h1:'Acceso anticipado.<br><em>Sé de los primeros.</em>',lead:'Estamos incorporando a las primeras empresas de alquiler. Déjanos tus datos: configuramos tu espacio, importamos tu inventario gratis y te lo enseñamos.',s_company:'Tu empresa',co:'Nombre de la empresa',ctry:'País',city:'Ciudad',vat:'NIF-IVA',opt:'(opcional)',vathint:'Empresa UE con NIF-IVA: factura sin IVA (inversión del sujeto pasivo)',ph:'Teléfono',s_access:'Tu acceso',nm:'Tu nombre',em:'Email de trabajo',pw:'Contraseña (mín. 8 caracteres)',show:'Ver',hide:'Ocultar',req:'Obligatorio',emhint:'Introduce un email válido',pwhint:'Mínimo 8 caracteres',note:'<b>💳 Nada que pagar ahora.</b> Las empresas con acceso anticipado tienen onboarding personal e importación de datos gratis. Al abrir, cada plan empieza con 14 días gratis, sin tarjeta.',agree:'Acepto que Rigvo me contacte sobre el acceso anticipado. <a href="privacy.html">Política de privacidad</a>.',small:'Respondemos en un día laborable · hello@rigvo.app',s_plan:'Tu plan',monthly:'Mensual',yearly:'Anual',popular:'El más elegido',mo:'/mes',custom:'A medida',byear:'pago anual',s_inc:'Todos los planes incluyen',t1:'Servidores en la UE',t2:'RGPD · DPA incluido',
+  sum_plan:'Plan',sum_bill:'Facturación',sum_users:'Usuarios',sum_after:'Precio al abrir',sum_vat:'IVA',sum_trial:'Prueba gratis',vat_rc:'inversión del sujeto pasivo (0 %)',vat_add:'según país',year_total:'al año',
+  cta:p=>'Solicitar acceso anticipado →',cta_ent:'Hablar con ventas →',ent_note:'Te llamamos en un día laborable y preparamos un plan para tu equipo.',
+  inc:['Presupuestos con aprobación online y seguimiento','Almacén, disponibilidad y preparación con QR','Planificación, nóminas y valoraciones del equipo','Beneficio de cada evento, LTV y estadísticas completas','Contabilidad: Lexware Office, Xero, Holded, Fakturownia, DATEV','App móvil para técnicos y almacén','Importación gratuita de tus hojas de cálculo'],
+  d_h:'Estás en la lista',d_p:(c,d)=>'¡Gracias! Contactaremos con '+c+' en un día laborable.',d1:'Importa tu inventario desde Excel: asignamos categorías y tarifas',d2:'Invita a tu equipo: técnicos y autónomos son gratis',d3:'Envía tu primer presupuesto y mira cuándo lo abre el cliente',d_btn:'Ver la demo en vivo →',d_ent:'¡Gracias! Nuestro equipo te contactará en un día laborable.',
+  bill_m:'Mensual',bill_y:'Anual'},
+ pl:{have:'Masz już konto?',login:'Demo na żywo →',h1:'Wczesny dostęp.<br><em>Bądź pierwszy w Rigvo.</em>',lead:'Właśnie przyjmujemy pierwsze wypożyczalnie. Zostaw dane — skonfigurujemy Twoją przestrzeń, za darmo zaimportujemy sprzęt i wszystko pokażemy.',s_company:'Twoja firma',co:'Nazwa firmy',ctry:'Kraj',city:'Miasto',vat:'NIP UE',opt:'(opcjonalnie)',vathint:'Firma z UE z NIP UE — faktura bez VAT (odwrotne obciążenie)',ph:'Telefon',s_access:'Twój dostęp',nm:'Imię i nazwisko',em:'E-mail służbowy',pw:'Hasło (min. 8 znaków)',show:'Pokaż',hide:'Ukryj',req:'Pole wymagane',emhint:'Wpisz poprawny e-mail',pwhint:'Co najmniej 8 znaków',note:'<b>💳 Teraz nic nie płacisz.</b> Firmy z wczesnym dostępem dostają osobiste wdrożenie i darmowy import danych. Po starcie każdy plan zaczyna się od 14 dni za darmo, bez karty.',agree:'Zgadzam się na kontakt Rigvo w sprawie wczesnego dostępu. <a href="privacy.html">Polityka prywatności</a>.',small:'Odpowiadamy w ciągu jednego dnia roboczego · hello@rigvo.app',s_plan:'Twój plan',monthly:'Miesięcznie',yearly:'Rocznie',popular:'Najczęściej wybierany',mo:'/mies.',custom:'Indywidualnie',byear:'płatne rocznie',s_inc:'Każdy plan zawiera',t1:'Serwery w UE',t2:'RODO · umowa powierzenia',
+  sum_plan:'Plan',sum_bill:'Rozliczenie',sum_users:'Użytkownicy',sum_after:'Cena po starcie',sum_vat:'VAT',sum_trial:'Okres próbny',vat_rc:'odwrotne obciążenie (0%)',vat_add:'wg kraju',year_total:'rocznie',
+  cta:p=>'Poproś o wczesny dostęp →',cta_ent:'Porozmawiaj z handlowcem →',ent_note:'Zadzwonimy w ciągu jednego dnia roboczego i przygotujemy plan dla Twojego zespołu.',
+  inc:['Oferty z akceptacją online i śledzeniem','Magazyn, dostępność i kompletacja z QR','Grafik, wynagrodzenia i oceny ekipy','Zysk z każdego wydarzenia, LTV i pełne statystyki','Księgowość: Lexware Office, Xero, Holded, Fakturownia, DATEV','Aplikacja mobilna dla ekipy i magazynu','Darmowy import danych z Twoich arkuszy'],
+  d_h:'Jesteś na liście',d_p:(c,d)=>'Dziękujemy! Skontaktujemy się z '+c+' w ciągu jednego dnia roboczego.',d1:'Zaimportuj sprzęt z Excela — dopasujemy kategorie i stawki',d2:'Zaproś zespół — ekipa i freelancerzy za darmo',d3:'Wyślij pierwszą ofertę i zobacz, kiedy klient ją otworzy',d_btn:'Zobacz demo na żywo →',d_ent:'Dziękujemy! Skontaktujemy się w ciągu jednego dnia roboczego.',
+  bill_m:'Miesięcznie',bill_y:'Rocznie'},
+ uk:{have:'Вже є акаунт?',login:'Демо →',h1:'Ранній доступ.<br><em>Будьте першими в Rigvo.</em>',lead:'Ми вже підключаємо перші прокатні компанії. Залиште дані — ми налаштуємо ваш простір, безкоштовно перенесемо склад і все покажемо.',s_company:'Ваша компанія',co:'Назва компанії',ctry:'Країна',city:'Місто',vat:'VAT ID (номер платника ПДВ)',opt:'(необов’язково)',vathint:'Компанія з ЄС з VAT ID — рахунок без ПДВ (reverse charge)',ph:'Телефон',s_access:'Ваш доступ',nm:'Ваше ім’я',em:'Робоча пошта',pw:'Пароль (мін. 8 символів)',show:'Показати',hide:'Сховати',req:'Обов’язкове поле',emhint:'Введіть правильну пошту',pwhint:'Щонайменше 8 символів',note:'<b>💳 Зараз нічого платити не треба.</b> Компанії з раннім доступом отримують персональне впровадження й безкоштовне перенесення даних. Після запуску кожен тариф починається з 14 днів безкоштовно, без картки.',agree:'Я погоджуюсь, щоб Rigvo зв’язався зі мною щодо раннього доступу. <a href="privacy.html">Політика конфіденційності</a>.',small:'Відповідаємо протягом робочого дня · hello@rigvo.app',s_plan:'Ваш тариф',monthly:'Щомісяця',yearly:'За рік',popular:'Найпопулярніший',mo:'/міс',custom:'Індивідуально',byear:'при оплаті за рік',s_inc:'У кожному тарифі',t1:'Сервери в ЄС',t2:'GDPR · DPA включено',
+  sum_plan:'Тариф',sum_bill:'Оплата',sum_users:'Користувачі',sum_after:'Ціна після запуску',sum_vat:'ПДВ',sum_trial:'Безкоштовний період',vat_rc:'reverse charge (0%)',vat_add:'за ставкою країни',year_total:'за рік',
+  cta:p=>'Отримати ранній доступ →',cta_ent:'Зв’язатися з продажами →',ent_note:'Ми зателефонуємо протягом робочого дня й підберемо тариф для вашої команди.',
+  inc:['Кошториси з погодженням онлайн і відстеженням','Склад, наявність і збір по QR','Графік, зарплата й рейтинг техніків','Прибуток кожної події, LTV і повна статистика','Бухгалтерія: Lexware Office, Xero, Holded, Fakturownia, DATEV','Мобільний застосунок для техніків і складу','Безкоштовне перенесення даних з ваших таблиць'],
+  d_h:'Ви в списку',d_p:(c,d)=>'Дякуємо! Ми зв’яжемося з '+c+' протягом робочого дня.',d1:'Імпортуйте склад з Excel — ми розкладемо категорії й ціни',d2:'Запросіть команду — техніки й фрилансери безкоштовно',d3:'Надішліть перший кошторис і побачите, коли клієнт його відкриє',d_btn:'Подивитись демо →',d_ent:'Дякуємо! Ми зв’яжемося з вами протягом робочого дня.',
+  bill_m:'Щомісяця',bill_y:'За рік'}};
+const q=new URLSearchParams(location.search);
+const st={lang:(q.get('lang')||'').toLowerCase(),plan:q.get('plan')||'pro',bill:q.get('bill')==='y'?'y':'m',showPw:false};
+if(!T[st.lang]){const n=(navigator.language||'en').slice(0,2);st.lang=T[n]?n:'en'}
+if(!PLANS.some(p=>p.id===st.plan))st.plan='pro';
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const L=()=>T[st.lang];
+const locale=()=>({en:'en-IE',de:'de-DE',es:'es-ES',pl:'pl-PL',uk:'uk-UA'})[st.lang];
+const eur=n=>new Intl.NumberFormat(locale(),{style:'currency',currency:'EUR',currencyDisplay:'narrowSymbol',maximumFractionDigits:0}).format(n);
+const price=p=>st.bill==='y'?Math.round(p.m*0.8):p.m;
+const trialEnd=()=>{const d=new Date();d.setDate(d.getDate()+14);return d.toLocaleDateString(locale(),{day:'numeric',month:'long',year:'numeric'})};
+function renderPlans(){const l=L();
+ $('#plans').innerHTML=PLANS.map(p=>`<button type="button" class="plan ${st.plan===p.id?'on':''}" data-plan="${p.id}" aria-pressed="${st.plan===p.id}"><span class="dot"></span><span style="min-width:0"><span class="nm">${p.nm}${p.pop?`<span class="tag">${l.popular}</span>`:''}</span><span class="ds">${p.ds[st.lang]}</span></span><span class="pr">${p.m?`${st.bill==='y'?`<s>${eur(p.m)}</s>`:''}<b>${eur(price(p))}</b><small>${l.mo}</small>`:`<b>${l.custom}</b>`}</span></button>`).join('');
+ const p=PLANS.find(x=>x.id===st.plan);const ctry=$('#ctry').value,vat=$('#vat').value.trim();
+ const rc=vat.length>4&&ctry!=='UA'&&ctry!=='XX'&&ctry!=='GB';
+ $('#sum').innerHTML=p.m?`<div><span>${l.sum_plan}</span><b>${p.nm}</b></div><div><span>${l.sum_users}</span><b>${p.users}</b></div><div><span>${l.sum_bill}</span><b>${st.bill==='y'?l.bill_y+' · −20%':l.bill_m}</b></div><div><span>${l.sum_trial}</span><b>${({en:'14 days',de:'14 Tage',es:'14 días',pl:'14 dni',uk:'14 днів'})[st.lang]}</b></div><div><span>${l.sum_vat}</span><b>${rc?l.vat_rc:l.vat_add}</b></div><div class="tot"><span>${l.sum_after}</span><b>${eur(price(p))} ${l.mo}${st.bill==='y'?`<br><small style="font-weight:500;color:var(--mut2)">${eur(price(p)*12)} ${l.year_total}</small>`:''}</b></div>`
+  :`<div style="display:block;color:var(--mut)">${l.ent_note}</div>`;
+ $('#cta').textContent=p.m?l.cta(p.nm):l.cta_ent;
+ $$('.toggle button').forEach(b=>b.classList.toggle('on',b.dataset.bill===st.bill));
+ const url=new URL(location.href);url.searchParams.set('plan',st.plan);url.searchParams.set('bill',st.bill);url.searchParams.set('lang',st.lang);try{history.replaceState(null,'',url)}catch(e){}
+}
+function renderLang(){const l=L();document.documentElement.lang=st.lang;$('#lang').value=st.lang;
+ $$('[data-t]').forEach(e=>{const v=l[e.dataset.t];if(typeof v!=='string')return;if(e.hasAttribute('data-html'))e.innerHTML=v;else e.textContent=v});
+ $('#inc').innerHTML=l.inc.map(x=>`<li>${x}</li>`).join('');
+ document.title='Rigvo — '+(l.s_plan);
+ renderPlans()}
+function syncCountry(){const o=$('#ctry').selectedOptions[0];$('#vat').placeholder=o.dataset.vat?o.dataset.vat+'123456789':'—';$('#ph').placeholder=o.dataset.ph+' …';renderPlans()}
+// country default by language
+({de:'DE',es:'ES',pl:'PL',uk:'UA'})[st.lang]&&($('#ctry').value=({de:'DE',es:'ES',pl:'PL',uk:'UA'})[st.lang]);
+document.addEventListener('click',e=>{const b=e.target.closest('[data-plan]');if(b){st.plan=b.dataset.plan;renderPlans();return}
+ const t=e.target.closest('[data-bill]');if(t){st.bill=t.dataset.bill;renderPlans();return}
+
+});
+$('#lang').addEventListener('change',e=>{st.lang=e.target.value;renderLang()});
+$('#ctry').addEventListener('change',syncCountry);
+$('#vat').addEventListener('input',renderPlans);
+function mark(id,bad,hintKey){const f=$('#'+id).closest('.f');f.classList.toggle('bad',bad);const h=f.querySelector('.hint[data-t="'+hintKey+'"]');if(h)h.hidden=!bad;return bad}
+$('#form').addEventListener('input',e=>{const f=e.target.closest('.f');if(f&&f.classList.contains('bad'))validate(true)});
+function validate(quiet){let bad=false;
+ bad=mark('co',!$('#co').value.trim(),'req')||bad;
+ bad=mark('nm',!$('#nm').value.trim(),'req')||bad;
+ bad=mark('em',!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test($('#em').value.trim()),'emhint')||bad;
+ const ag=!$('#agree').checked;$('#chkw').classList.toggle('bad',ag);bad=ag||bad;
+ if(bad&&!quiet){const first=$('.f.bad input, .f.bad select')||$('#agree');first.focus({preventScroll:true});first.scrollIntoView({block:'center',behavior:'smooth'})}
+ return !bad}
+$('#agree').addEventListener('change',()=>$('#chkw').classList.remove('bad'));
+$('#form').addEventListener('submit',async e=>{e.preventDefault();if(!validate())return;const b=$('#cta'),l=L(),p=PLANS.find(x=>x.id===st.plan);b.disabled=true;b.textContent='…';
+ const data={company:$('#co').value.trim(),country:$('#ctry').value,city:$('#city').value.trim(),vat_id:$('#vat').value.trim(),phone:$('#ph').value.trim(),name:$('#nm').value.trim(),email:$('#em').value.trim(),plan:p.nm,billing:st.bill==='y'?'yearly':'monthly',language:st.lang};
+ try{const r=await sendLead('Early access',data);
+  if(r==='sent'){document.body.classList.add('isdone');$('#d_p').textContent=l.d_p(data.company);$('.done .steps').style.display='none';scrollTo(0,0)}
+ }catch(x){alert('Could not send — please email hello@rigvo.app')}
+ b.disabled=false;renderPlans()});
+renderLang();syncCountry();
+</script>
+<script src="lead.js"></script>
+</body>
+</html>

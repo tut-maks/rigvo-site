@@ -1,0 +1,5 @@
+@font-face{font-family:Geist;src:url(fonts/geist.woff2) format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:"Rigvo Logo";src:url(fonts/bricolage-logo.woff) format("woff");font-weight:800;font-style:normal;font-display:block}
+.rv-logo{font-family:"Rigvo Logo",Geist,system-ui,sans-serif;font-weight:800;letter-spacing:-.04em;line-height:1;white-space:nowrap;display:inline-block}
+.rv-i{position:relative;display:inline-block}
+.rv-dot{position:absolute;left:50%;top:-.02em;width:.24em;height:.24em;margin-left:-.12em;border-radius:50%;background:#FFD400;box-shadow:0 0 .35em rgba(255,212,0,.85)}
