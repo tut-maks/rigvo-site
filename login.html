@@ -39,12 +39,19 @@ button{width:100%;border:0;border-radius:12px;background:var(--a);color:#0E0E0E;
 <input id="pw" type="password" autocomplete="current-password" required>
 <div class="row"><span></span><a href="mailto:hello@rigvo.app?subject=Rigvo%20password">Forgot password?</a></div>
 <button type="submit">Log in</button>
-<div class="msg" id="msg" role="status">Rigvo is in early access — workspaces are opened personally. <a href="signup.html">Request access</a> or <a href="demo.html">open the live demo</a>.</div>
+<div class="msg" id="msg" role="status"></div>
 <p class="foot">No account yet? <a href="signup.html">Get early access</a></p>
 </form>
 </main>
 <script>
-document.getElementById('f').addEventListener('submit',e=>{e.preventDefault();document.getElementById('msg').style.display='block'});
+/* Test account for the demo workspace (no real data behind it). Real sign-in will live on app.rigvo.app. */
+const DEMO={email:'demo@rigvo.app',password:'Nordstage-2026'};
+const f=document.getElementById('f'),msg=document.getElementById('msg'),btn=f.querySelector('button');
+function show(html){msg.innerHTML=html;msg.style.display='block';msg.animate([{opacity:0,transform:'translateY(-4px)'},{opacity:1,transform:'none'}],{duration:200,easing:'ease-out'})}
+f.addEventListener('submit',e=>{e.preventDefault();const em=document.getElementById('em').value.trim().toLowerCase(),pw=document.getElementById('pw').value;
+ if(em===DEMO.email&&pw===DEMO.password){btn.disabled=true;btn.textContent='Signing in…';try{sessionStorage.setItem('rigvo_demo','1')}catch(x){}setTimeout(()=>{location.href='demo.html'},450);return}
+ if(!em||!pw){show('Enter your email and password.');return}
+ show('Wrong email or password. Rigvo is in early access — workspaces are opened personally. <a href="signup.html">Request access</a> or <a href="demo.html">open the live demo</a>.')});
 </script>
 </body>
 </html>

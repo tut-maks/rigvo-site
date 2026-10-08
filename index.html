@@ -8,9 +8,45 @@
 <link rel="stylesheet" href="brand.css">
 <meta name="description" content="Rigvo — more than a warehouse. CRM for event &amp; AV rental: quotes, stock, picking, crew, transport and the real profit of every event.">
 <meta property="og:title" content="Rigvo — more than a warehouse">
-<meta property="og:description" content="CRM for event &amp; AV rental companies in Europe. EN · DE · ES · PL · UA.">
+<meta property="og:description" content="CRM for event &amp; AV rental companies in Europe. EN · DE · ES · PL.">
 <style>body{margin:0;background:#F5F5F2}a{color:#111}html{scroll-behavior:smooth}
 @media (max-width:640px){h1{font-size:40px!important}h2{font-size:32px!important}#tracking>div{padding:28px!important}}</style>
+<style>
+.mk{background:#FAFAF8;color:#111;border-radius:16px;overflow:hidden;display:flex;width:100%;height:604px;align-self:center;box-shadow:0 30px 80px rgba(0,0,0,.45);border:1px solid #2A2A27;font-size:14px}
+.mk-side{background:#0E0E0E;color:#D6D6D2;width:168px;flex:0 0 168px;padding:18px 12px;display:flex;flex-direction:column;gap:3px;border-right:1px solid #262623}
+.mk-h{font-size:11px;color:#8A8A84;letter-spacing:.08em;padding:12px 10px 4px}.mk-h:first-child{padding-top:4px}
+.mk-side button{font:inherit;font-size:14.5px;text-align:left;background:none;color:#D6D6D2;border:0;border-left:3px solid transparent;border-radius:7px;padding:10px 10px;cursor:pointer;min-height:40px}
+.mk-side button:hover{background:#1A1A18;color:#fff}
+.mk-side button.on{background:#222220;color:#fff;border-left-color:#FFD400}
+.mk-side button:focus-visible{outline:2px solid #FFD400;outline-offset:1px}
+.mk-full{margin-top:auto;color:#FFD400;text-decoration:none;font-size:13px;font-weight:600;padding:10px}
+.mk-main{flex:1 1 auto;min-width:0;padding:22px;overflow-y:auto;display:flex;flex-direction:column;gap:12px;animation:mkin .18s ease}
+@keyframes mkin{from{opacity:.4;transform:translateY(3px)}to{opacity:1;transform:none}}
+.mk-t{font-size:22px;font-weight:700;letter-spacing:-.02em;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}.mk-t small{font-size:12.5px;font-weight:500;color:#6A6A64}
+.mk-g{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.mk-c{background:#fff;border:1px solid #E6E6E1;border-radius:10px;padding:12px 14px}
+.mk-k{font-size:12px;color:#55554F}.mk-v{font-size:25px;font-weight:700;letter-spacing:-.02em}.mk-d{font-size:12px;font-weight:600}.up{color:#138A4C}.dn{color:#B42318}
+.mk-c h4{margin:0 0 6px;font-size:14px}
+.mk-r{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 0;border-top:1px solid #EFEFEA;font-size:13px}.mk-r:first-of-type{border-top:0}
+.mk-r .m{color:#55554F;font-size:12px}
+.mk-p{display:inline-block;font-size:11.5px;font-weight:600;border-radius:999px;padding:2px 8px;white-space:nowrap}
+.p-y{background:#FFF3B8;color:#6B5200}.p-g{background:#E3F5EA;color:#116B3B}.p-r{background:#FDE7E5;color:#A3241A}.p-b{background:#E7EEFC;color:#244BA6}.p-n{background:#EFEFEA;color:#4A4A45}
+.mk-btn{font:inherit;font-size:12.5px;font-weight:600;border:1px solid #D2D2CB;background:#fff;border-radius:7px;padding:6px 10px;cursor:pointer;white-space:nowrap;min-height:32px}
+.mk-btn.pri{background:#FFD400;border-color:#FFD400}.mk-btn.done{background:#E3F5EA;border-color:#BFE6CF;color:#116B3B;cursor:default}
+.bar{height:6px;border-radius:6px;background:#EFEFEA;overflow:hidden;width:90px;flex:none}.bar i{display:block;height:100%;border-radius:6px}
+.chart{display:flex;align-items:flex-end;gap:6px;height:84px;padding-top:6px}.chart div{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:10px;color:#6A6A64}.chart b{display:block;width:100%;border-radius:4px 4px 0 0;background:#E2E2DC}.chart div:last-child b{background:#FFD400}
+.live{display:flex;gap:8px;align-items:center;background:#FFF8D6;border:1px solid #F0DA7A;border-radius:10px;padding:10px 12px;font-size:13px}.live i{width:8px;height:8px;border-radius:50%;background:#138A4C;flex:none;box-shadow:0 0 0 4px rgba(19,138,76,.15)}
+.mk-note{margin-top:auto;font-size:11px;color:#6A6A64}
+@media (max-width:640px){.mk{flex-direction:column;height:640px}.mk-side{width:auto;flex:none;flex-direction:row;overflow-x:auto;padding:10px;gap:4px;border-right:0;border-bottom:1px solid #262623}.mk-h{display:none}.mk-side button{flex:none;border-left:0;border-bottom:3px solid transparent;border-radius:7px}.mk-side button.on{border-bottom-color:#FFD400}.mk-full{margin:0;flex:none;align-self:center;white-space:nowrap}.mk-main{padding:16px}.mk-g{grid-template-columns:1fr 1fr}}
+</style>
+<style>
+summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"";flex:none;width:12px;height:12px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:translateY(-3px) rotate(45deg);transition:transform .26s cubic-bezier(.2,.8,.2,1);opacity:.6}
+details[open]>summary::after{transform:translateY(2px) rotate(225deg)}
+.dc{overflow:hidden}
+@media (prefers-reduced-motion:reduce){summary::after{transition:none}}
+</style>
 </head>
 <body>
 
@@ -38,7 +74,7 @@
 
 <!-- HERO -->
 <section id="top" style="background: #0E0E0E; color: #FFFFFF; padding: 56px 24px 96px">
-<div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 56px; align-items: center">
+<div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 56px; align-items: stretch">
 <div style="flex: 1 1 420px; min-width: 0">
 <p style="margin: 0 0 20px; display: inline-block; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #FFD400">CRM for event &amp; AV rental</p>
 <h1 style="margin: 0 0 24px; font-size: clamp(38px, 5vw, 52px); line-height: 1.02; letter-spacing: -0.035em; font-weight: 800">More than a warehouse.<br><span style="color: #FFD400">Your whole rental business — under control.</span></h1>
@@ -47,37 +83,25 @@
 <a href="signup.html" style="background: #FFD400; color: #0E0E0E; text-decoration: none; font-weight: 600; font-size: 17px; padding: 16px 24px; border-radius: 10px">Get early access</a>
 <a href="#demo" data-modal="demo" style="color: #FFFFFF; text-decoration: none; font-weight: 600; font-size: 17px; padding: 15px 23px; border-radius: 10px; border: 1px solid #3A3A36">Book a demo</a>
 </div>
-<p style="margin: 0; font-size: 14px; color: #9A9A94">Now onboarding the first rental companies · English, Deutsch, Español, Polski, Українська</p>
+<p style="margin: 0; font-size: 14px; color: #9A9A94">Now onboarding the first rental companies · English, Deutsch, Español, Polski</p>
 </div>
 
-<!-- product mockup -->
-<div style="flex: 1 1 520px; min-width: 0">
-<div style="background: #FFFFFF; color: #111111; border-radius: 16px; overflow: hidden; display: flex; box-shadow: 0 30px 80px rgba(0,0,0,0.45); border: 1px solid #2A2A27">
-<div style="background: #0E0E0E; color: #D6D6D2; width: 150px; flex: 0 0 150px; padding: 18px 12px; display: flex; flex-direction: column; gap: 4px; font-size: 13px; border-right: 1px solid #262623">
-<div style="font-size: 11px; color: #8A8A84; letter-spacing: 0.08em; padding: 4px 8px">WORKSPACE</div>
-<div style="background: #222220; color: #FFFFFF; border-left: 3px solid #FFD400; border-radius: 6px; padding: 8px">Overview</div>
-<div style="padding: 8px">My day</div>
-<div style="padding: 8px">Tasks</div>
-<div style="font-size: 11px; color: #8A8A84; letter-spacing: 0.08em; padding: 12px 8px 4px">OPERATIONS</div>
-<div style="padding: 8px">Quotes</div>
-<div style="padding: 8px">Projects</div>
-<div style="padding: 8px">Equipment</div>
-<div style="padding: 8px">Team</div>
-</div>
-<div style="flex: 1 1 auto; min-width: 0; padding: 20px; background: #FAFAF8">
-<div style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 14px">Business overview</div>
-<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-bottom: 14px">
-<div style="background: #FFFFFF; border: 1px solid #E6E6E1; border-radius: 10px; padding: 12px"><div style="font-size: 12px; color: #55554F">Quotes awaiting approval</div><div style="font-size: 26px; font-weight: 700">7</div></div>
-<div style="background: #FFFFFF; border: 1px solid #E6E6E1; border-radius: 10px; padding: 12px"><div style="font-size: 12px; color: #55554F">Active projects</div><div style="font-size: 26px; font-weight: 700">12</div></div>
-</div>
-<div style="background: #FFFFFF; border: 1px solid #E6E6E1; border-radius: 10px; padding: 12px 14px">
-<div style="font-weight: 600; margin-bottom: 8px; font-size: 14px">Needs attention</div>
-<div style="display: flex; justify-content: space-between; gap: 8px; padding: 8px 0; border-top: 1px solid #EFEFEA; font-size: 13px"><span>Follow up on quote Q-1042</span><span style="color: #55554F">Today</span></div>
-<div style="display: flex; justify-content: space-between; gap: 8px; padding: 8px 0; border-top: 1px solid #EFEFEA; font-size: 13px"><span>Confirm crew for Product Launch</span><span style="color: #55554F">12 Oct</span></div>
-<div style="display: flex; justify-content: space-between; gap: 8px; padding: 8px 0; border-top: 1px solid #EFEFEA; font-size: 13px"><span>Shortage: 2 wireless mics</span><span style="color: #8A5A00; font-weight: 600">15 Oct</span></div>
-</div>
-<div style="margin-top: 10px; font-size: 11px; color: #55554F">Demo data</div>
-</div>
+<!-- product mockup (interactive mini demo) -->
+<div style="flex: 1 1 520px; min-width: 0; display: flex">
+<div class="mk" id="mk">
+<nav class="mk-side" aria-label="Demo sections">
+<div class="mk-h">WORKSPACE</div>
+<button type="button" data-mk="overview" class="on">Overview</button>
+<button type="button" data-mk="day">My day</button>
+<button type="button" data-mk="tasks">Tasks</button>
+<div class="mk-h">OPERATIONS</div>
+<button type="button" data-mk="quotes">Quotes</button>
+<button type="button" data-mk="projects">Projects</button>
+<button type="button" data-mk="equipment">Equipment</button>
+<button type="button" data-mk="team">Team</button>
+<a class="mk-full" href="demo.html">Open full demo →</a>
+</nav>
+<div class="mk-main" id="mkMain" aria-live="polite"></div>
 </div>
 </div>
 </div>
@@ -86,7 +110,7 @@
 <!-- PROOF STRIP -->
 <section style="border-bottom: 1px solid #E6E6E1; background: #FFFFFF">
 <div style="max-width: 1200px; margin: 0 auto; padding: 22px 24px; display: flex; flex-wrap: wrap; gap: 12px 40px; align-items: center; justify-content: space-between; font-size: 15px; color: #3D3D38">
-<span><strong style="color: #111111">In daily use</strong> at KRental, an event rental company in Kyiv</span>
+<span><strong style="color: #111111">In daily use</strong> at a working event rental company</span>
 <span>Built for EU VAT &amp; e-invoicing</span>
 <span>GDPR-ready</span>
 <span>Works on phone, tablet and desktop</span>
@@ -282,6 +306,53 @@ M.addEventListener('click',e=>{if(e.target===M)M.style.display='none'});
 addEventListener('keydown',e=>{if(e.key==='Escape')M.style.display='none'});
 document.getElementById('mform').addEventListener('submit',async e=>{e.preventDefault();const f=new FormData(e.target);B.disabled=true;try{await sendLead('Demo request',{company:f.get('c'),email:f.get('e'),country:f.get('k')});OK.style.display='block'}catch(x){OK.textContent='Could not send — please email hello@rigvo.app';OK.style.display='block'}B.disabled=false});
 document.querySelectorAll('a[href^="#"]:not([data-modal])').forEach(a=>a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'})}}));
+</script>
+<script>
+(function(){
+const P=(t,c)=>`<span class="mk-p ${c}">${t}</span>`;
+const R=(a,b)=>`<div class="mk-r">${a}${b}</div>`;
+const L=(t,m)=>`<span>${t}${m?`<br><span class="m">${m}</span>`:''}</span>`;
+const bar=(v,c)=>`<span class="bar"><i style="width:${v}%;background:${c}"></i></span>`;
+const S={
+overview:()=>`<div class="mk-t">Business overview <small>October 2026</small></div>
+<div class="mk-g"><div class="mk-c"><div class="mk-k">Quotes awaiting approval</div><div class="mk-v">7</div></div><div class="mk-c"><div class="mk-k">Active projects</div><div class="mk-v">12</div></div>
+<div class="mk-c"><div class="mk-k">Revenue October</div><div class="mk-v">€284k</div><div class="mk-d up">+14% vs last year</div></div><div class="mk-c"><div class="mk-k">Receivables</div><div class="mk-v">€41.2k</div><div class="mk-d dn">€19.6k overdue</div></div></div>
+<div class="mk-c"><h4>Needs attention</h4>${R(L('Follow up on quote Q-1042'),'<span class="m">Today</span>')}${R(L('Confirm crew for Product Launch'),'<span class="m">12 Oct</span>')}${R(L('Shortage: 2 wireless mics'),P('15 Oct','p-y'))}</div>
+<div class="mk-c"><h4>Revenue by month, k€</h4><div class="chart">${[[172,'May'],[198,'Jun'],[164,'Jul'],[143,'Aug'],[251,'Sep'],[284,'Oct']].map(x=>`<div><b style="height:${Math.round(x[0]/284*64)}px"></b>${x[1]}</div>`).join('')}</div></div>`,
+day:()=>`<div class="mk-t">My day <small>4 actions · 2 need you now</small></div>
+<div class="mk-c">${R(L('Approve quote Q-1032 · Nordlicht','12% discount above limit · Jonas'),'<button type="button" class="mk-btn pri" data-done="Approved ✓">Approve</button>')}
+${R(L('Call Atlas Studio','opened quote Q-1031 four times'),'<button type="button" class="mk-btn" data-done="Called ✓">Call</button>')}
+${R(L('Finish picking · Partner Forum','18 of 24 · leaves 07:30'),'<button type="button" class="mk-btn" data-go="equipment">Open</button>')}
+${R(L('Assign technicians · Product launch','2 roles open · tomorrow 09:00'),'<button type="button" class="mk-btn" data-go="team">Assign</button>')}</div>
+<div class="live"><i></i>Atlas Studio is viewing your quote right now — 3 min on the LED wall.</div>`,
+tasks:()=>`<div class="mk-t">Tasks <small>34 open · 87% on time</small></div>
+<div class="mk-c">${[['Find replacement for 2 wireless mics','Robert · today','Critical','p-r'],['Send final invoice · Nordlicht Events','Marek · today','High','p-y'],['Update LED screen price list','Anna · Fri','Medium','p-n'],['Fix event report · Live stream','Jonas · overdue 1 day','High','p-y'],['Book hotel for crew · Summit','Emma · 10 Oct','Low','p-n']].map(t=>R(L(t[0],t[1]),P(t[2],t[3]))).join('')}</div>`,
+quotes:()=>`<div class="mk-t">Quotes <small>October: 63 · €480k · win rate 41%</small></div>
+<div class="live"><i></i>Atlas Studio opened Q-1031 just now (4th time).</div>
+<div class="mk-c">${[['Q-1031 · Atlas Studio','Partner Forum · 18 Oct','€22,182','Viewed 4×','p-b'],['Q-1032 · Nordlicht Events','Conference · 24 Oct','€16,900','Needs approval','p-y'],['Q-1030 · Kite Media','Product launch · 14 Oct','€8,450','Approved','p-g'],['Q-1029 · Vistula Congress','Congress, 3 halls · 30 Oct','€31,200','Draft','p-n']].map(q=>R(L(q[0],q[1]),`<span style="display:flex;gap:8px;align-items:center"><b>${q[2]}</b>${P(q[3],q[4])}</span>`)).join('')}</div>`,
+projects:()=>`<div class="mk-t">Projects <small>this week · readiness</small></div>
+<div class="mk-c">${[['Partner Forum','08 Oct · Spreehalle, Hall 2',75,'#E8890C','3/4'],['Conference','09 Oct · Kranhaus Loft',50,'#E8890C','2/4'],['Product launch','09 Oct · Nordhafen Studio',25,'#D92D20','1/4'],['Summit','10 Oct · Spreehalle, Main hall',75,'#E8890C','3/4'],['Live stream','11 Oct · Nordstage studio',100,'#12A150','4/4']].map(p=>R(L(p[0],p[1]),`<span style="display:flex;gap:10px;align-items:center">${bar(p[2],p[3])}<b style="width:28px;text-align:right">${p[4]}</b></span>`)).join('')}</div>
+<div class="mk-c"><h4>Real profit · Partner Forum</h4>${R(L('Rental & services'),'<b>€22,182</b>')}${R(L('Crew, transport, sub-rental'),'<b>−€9,240</b>')}${R(L('Net profit'),'<b class="up">€12,942 · 58%</b>')}</div>`,
+equipment:()=>`<div class="mk-t">Equipment <small>availability on 08 Oct</small></div>
+<div class="mk-c">${[['Wireless mic Shure ULXD','Sound',22,24,P('2 short','p-r')],['Line array L-Acoustics Kara','Sound',16,16,P('All available','p-g')],['Moving head Robe MegaPointe','Lighting',24,30,P('6 on events','p-b')],['LED panel P2.6','LED',120,144,P('24 on events','p-b')],['Mixing desk Yamaha CL5','Sound',2,3,P('1 in repair','p-y')]].map(e=>R(L(e[0],e[1]+' · '+e[2]+' of '+e[3]+' free'),e[4])).join('')}</div>
+<div class="mk-c">${R(L('Picking · Partner Forum','scanned by QR · 18 of 24'),`<span style="display:flex;gap:10px;align-items:center">${bar(75,'#FFD400')}<button type="button" class="mk-btn" data-done="Sub-rent requested ✓">Sub-rent 2 mics</button></span>`)}</div>`,
+team:()=>`<div class="mk-t">Team <small>today · utilisation 78%</small></div>
+<div class="mk-c">${[['Daniel Wolf','Sound · Partner Forum','On site','p-g'],['Ivan Horák','Lighting · Partner Forum','On site','p-g'],['Olek Kowalski','LED · Conference set-up','From 14:00','p-b'],['Lukas Braun','Driver · VW Crafter 07:30','On the road','p-b'],['Paul Richter','Driver','Free','p-n']].map(t=>R(L(t[0],t[1]),P(t[2],t[3]))).join('')}</div>
+<div class="mk-c">${R(L('Product launch · 2 roles open','Sound tech, Lighting tech · tomorrow 09:00'),'<button type="button" class="mk-btn pri" data-done="Assigned ✓">Auto-assign</button>')}</div>`};
+const main=document.getElementById('mkMain'),side=document.querySelector('.mk-side');
+function show(k){main.innerHTML=S[k]()+'<div class="mk-note">Demo data · Nordstage Rental</div>';main.style.animation='none';main.offsetHeight;main.style.animation='';side.querySelectorAll('button[data-mk]').forEach(b=>{const on=b.dataset.mk===k;b.classList.toggle('on',on);b.setAttribute('aria-pressed',on)})}
+side.addEventListener('click',e=>{const b=e.target.closest('button[data-mk]');if(b)show(b.dataset.mk)});
+main.addEventListener('click',e=>{const g=e.target.closest('[data-go]');if(g){show(g.dataset.go);return}const d=e.target.closest('[data-done]');if(d&&!d.classList.contains('done')){d.textContent=d.dataset.done;d.classList.add('done');d.classList.remove('pri')}});
+show('overview');
+})();
+</script>
+<script>
+/* Rigvo rule: everything that expands/collapses does it smoothly */
+(function(){const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+document.querySelectorAll('details').forEach(d=>{const s=d.querySelector('summary');const c=document.createElement('div');c.className='dc';while(s.nextSibling)c.appendChild(s.nextSibling);d.appendChild(c);
+ s.addEventListener('click',e=>{e.preventDefault();if(d._busy)return;const opt={duration:reduce?0:280,easing:'cubic-bezier(.2,.8,.2,1)'};
+  if(!d.open){d.open=true;const h=c.scrollHeight;d._busy=1;c.animate([{height:'0px',opacity:0},{height:h+'px',opacity:1}],opt).onfinish=()=>{d._busy=0}}
+  else{const h=c.scrollHeight;d._busy=1;c.animate([{height:h+'px',opacity:1},{height:'0px',opacity:0}],opt).onfinish=()=>{d.open=false;d._busy=0}}})})})();
 </script>
 <script src="lead.js"></script>
 </body>
