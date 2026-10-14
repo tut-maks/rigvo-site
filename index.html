@@ -56,29 +56,6 @@ details[open]>summary::after{transform:translateY(2px) rotate(225deg)}
 </style>
 </head>
 <body>
-<!-- One-day greeting (owner's request): shows only on 14.10.2026, local date -->
-<script>
-(function(){var d=new Date();if(d.getFullYear()!==2026||d.getMonth()!==9||d.getDate()!==14)return;
-var css='#hb{position:fixed;inset:0;z-index:2147483000;background:#0E0E0E;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;cursor:pointer;font-family:Geist,system-ui,sans-serif;opacity:0;transition:opacity .6s ease;overflow:hidden}'
-+'#hb.on{opacity:1}#hb.off{opacity:0}'
-+'#hb .glow{position:absolute;width:120vmax;height:120vmax;left:50%;top:-30vmax;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(255,212,0,.22),rgba(255,212,0,0) 70%);pointer-events:none;animation:hbPulse 5s ease-in-out infinite}'
-+'#hb .dot{width:28px;height:28px;border-radius:50%;background:#FFD400;box-shadow:0 0 60px 18px rgba(255,212,0,.55);margin-bottom:40px;animation:hbPulse 2.4s ease-in-out infinite}'
-+'#hb h1{position:relative;margin:0;font-family:"Bricolage Grotesque",Geist,system-ui,sans-serif;font-weight:800;font-size:clamp(48px,8.5vw,128px);line-height:1.02;letter-spacing:-.035em;max-width:14ch;animation:hbUp 1s cubic-bezier(.2,.7,.2,1) both .15s}'
-+'#hb h1 b{color:#FFD400}'
-+'#hb p{position:relative;margin:36px 0 0;font-size:15px;color:#8A8A84;animation:hbUp 1s ease both .8s}'
-+'@keyframes hbPulse{0%,100%{opacity:.75;transform:translateX(var(--x,0)) scale(1)}50%{opacity:1;transform:translateX(var(--x,0)) scale(1.06)}}'
-+'#hb .glow{--x:-50%}'
-+'@keyframes hbUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}'
-+'@media (prefers-reduced-motion:reduce){#hb,#hb *{animation:none!important;transition:none!important}}';
-var st=document.createElement('style');st.textContent=css;document.head.appendChild(st);
-var el=document.createElement('div');el.id='hb';el.setAttribute('data-notr','');el.setAttribute('role','dialog');el.setAttribute('aria-label','Вітання');
-el.innerHTML='<div class="glow"></div><div class="dot"></div><h1>Вітаю <b>Альону</b> з днем дня всіх днів!</h1><p>Натисніть будь-де, щоб продовжити</p>';
-function show(){document.body.appendChild(el);document.documentElement.style.overflow='hidden';requestAnimationFrame(function(){requestAnimationFrame(function(){el.className='on'})})}
-function close(){if(el.className==='off')return;el.className='off';document.documentElement.style.overflow='';setTimeout(function(){el.remove()},650);document.removeEventListener('keydown',key)}
-function key(e){if(e.key==='Escape'||e.key==='Enter'||e.key===' ')close()}
-el.addEventListener('click',close);document.addEventListener('keydown',key);
-if(document.body)show();else document.addEventListener('DOMContentLoaded',show)})();
-</script>
 
 <div style="font-family: 'Geist', system-ui, sans-serif; color: #111111; background: #F5F5F2; width: 100%">
 
