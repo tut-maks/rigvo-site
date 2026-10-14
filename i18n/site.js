@@ -30,6 +30,6 @@ window.rigvoLang=function(){return LANG};
 window.rigvoSetLang=function(l){if(!(l in IDX)&&l!=='en')return;LANG=l;try{l==='en'?localStorage.removeItem('rigvo_lang'):localStorage.setItem('rigvo_lang',l)}catch(e){}try{var u=new URL(location.href);u.searchParams.delete('lang');history.replaceState(null,'',u)}catch(e){}apply()};
 function picker(){var host=document.querySelector('[data-lang-picker]');if(!host)return;var sel=document.createElement('select');sel.id='rvLang';sel.setAttribute('aria-label','Language');sel.setAttribute('data-notr','');sel.className='rv-lang';LANGS.forEach(function(l){var o=document.createElement('option');o.value=l[0];o.textContent=l[0].toUpperCase()+' · '+l[1];sel.appendChild(o)});sel.value=LANG;sel.addEventListener('change',function(){rigvoSetLang(sel.value)});host.appendChild(sel)}
 var mo=new MutationObserver(function(ms){if(LANG==='en')return;ms.forEach(function(m){m.addedNodes.forEach(walk);if(m.type==='characterData')walk(m.target)})});
-function start(){picker();if(LANG!=='en')apply();else links();mo.observe(document.body,{childList:true,subtree:true,characterData:true})}
+function start(){picker();if(LANG!=='en')apply();else links();mo.observe(document.body,{childList:true,subtree:true,characterData:true});document.documentElement.classList.remove('rv-tr')}
 document.readyState==='loading'?document.addEventListener('DOMContentLoaded',start):start();
 })();
